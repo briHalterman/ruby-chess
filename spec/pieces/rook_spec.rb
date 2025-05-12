@@ -7,11 +7,11 @@ RSpec.describe Rook do
   let(:black_rook) { Rook.new(:black, [7, 0]) }
 
   describe '#symbol' do
-    it 'returns ♙ for white rooks' do
+    it 'returns ♖ for white rooks' do
       expect(white_rook.symbol).to eq('♖')
     end
 
-    it 'returns ♟ for black rooks' do
+    it 'returns ♜ for black rooks' do
       expect(black_rook.symbol).to eq('♜')
     end
   end
