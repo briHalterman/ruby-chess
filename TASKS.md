@@ -23,7 +23,7 @@
 - [x] Piece base class
 - [x] Pawn subclass
 - [x] Rook subclass
-- [ ] Knight subclass
+- [x] Knight subclass
 - [ ] Bishop subclass
 - [ ] Queen subclass
 - [ ] King subclass
