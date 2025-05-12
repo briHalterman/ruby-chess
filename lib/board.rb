@@ -44,5 +44,8 @@ class Board
 
     # Place white queen on middle white square
     place_piece(:white_queen, [0,3])
+
+    # Place white king next to white queen
+    place_piece(:white_king, [0,4])
   end
 end
