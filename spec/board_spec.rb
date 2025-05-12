@@ -4,6 +4,7 @@ require_relative '../lib/board'
 
 RSpec.describe Board do
   let(:board) { Board.new }
+  let(:mock_piece) { double('Piece') }
 
   describe '#initialize' do
     it 'creates an 8x8 grid' do
@@ -14,7 +15,6 @@ RSpec.describe Board do
 
   describe '#place_piece' do
     it 'places a piece at the given position on the grid' do
-      mock_piece = double('Piece')
       board.place_piece(mock_piece, [3, 4])
 
       expect(board.grid[3][4]).to eq(mock_piece)
@@ -23,7 +23,6 @@ RSpec.describe Board do
 
   describe '#piece_at' do
     it 'returns the piece at the given position' do
-      mock_piece = double('Piece')
       board.place_piece(mock_piece, [1, 1])
 
       expect(board.piece_at([1, 1])).to eq(mock_piece)
