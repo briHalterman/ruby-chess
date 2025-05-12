@@ -11,7 +11,7 @@ class Board
     @grid[row][column] = piece
   end
 
-  def piece_at
+  def piece_at(position)
 
   end
 end
