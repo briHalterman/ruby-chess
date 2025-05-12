@@ -6,7 +6,7 @@ class Board
     @grid = Array.new(8) { Array.new(8) }
   end
 
-  def place_piece()
+  def place_piece(piece, position)
 
   end
 end
