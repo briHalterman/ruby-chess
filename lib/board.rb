@@ -23,4 +23,8 @@ class Board
     @grid[new_row][new_column] = @grid[current_row][current_column]
     @grid[current_row][current_column] = nil
   end
+
+  def place_starting_pieces
+    
+  end
 end
