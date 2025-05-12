@@ -5,7 +5,7 @@
 - [x] Create TASKS.md
 - [x] Initialize git repo and create first commit
 - [x] Set up README and .gitignore
-- [ ] Create basic folder structure
+- [x] Create basic folder structure
 - [ ] Set up RSpec with a test runner and spec_helper.rb
 - [ ] Draft MVP scope in notebook
 - [ ] Define initial classes (Board, Game, Piece, etc.)
