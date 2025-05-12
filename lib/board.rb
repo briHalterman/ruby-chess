@@ -15,4 +15,8 @@ class Board
     row, column = position
     @grid[row][column]
   end
+
+  def move_piece
+    
+  end
 end
