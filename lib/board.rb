@@ -25,9 +25,9 @@ class Board
   end
 
   def place_starting_pieces
-    mock_piece = :white_pawn  # placeholder implementation
-    place_piece(mock_piece, [0, 0])
-    place_piece(mock_piece, [1, 0])
-    place_piece(mock_piece, [1, 4])
+    # Place 8 white pawns on row 1
+    8.times do |column|
+      place_piece(:white_pawn, [1, column])
+    end
   end
 end
