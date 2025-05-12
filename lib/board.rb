@@ -33,5 +33,9 @@ class Board
     # Place white rooks in the corners of row 0
     place_piece(:white_rook, [0,0])
     place_piece(:white_rook, [0,7])
+
+    # Place white knights next to white rooks
+    place_piece(:white_knight, [0,1])
+    place_piece(:white_knight, [0,6])
   end
 end
