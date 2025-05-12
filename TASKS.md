@@ -12,7 +12,7 @@
 - [x] Write first failing test
 
 ## Stage 2: Board Functionality
-- [ ] Initialize an empty 8x8 grid
+- [x] Initialize an empty 8x8 grid
 - [ ] Place a piece at a specific position
 - [ ] Retrieve a piece from a position
 - [ ] Move a piece from one square to another
