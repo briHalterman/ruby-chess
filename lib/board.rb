@@ -46,4 +46,8 @@ class Board
       place_piece(:"#{color}_#{piece}", [row, column])
     end
   end
+
+  def display_board
+    
+  end
 end
