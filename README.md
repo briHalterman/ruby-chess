@@ -21,6 +21,7 @@ White is on right!
 Queen always goes on her color
 First row: rook, knight, bishop, queen, king, bishop, knight, rook
 Second row: pawns
+
 ![setup.jpg](readme-assets/images/setup/setup.jpg)
 
 #### Players & Turns:

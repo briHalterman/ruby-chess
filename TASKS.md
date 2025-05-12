@@ -17,10 +17,17 @@
 - [x] Retrieve a piece from a position
 - [x] Move a piece from one square to another
 - [x] Set up initial chessboard
-- [ ] Render board in the terminal
+- [x] Render board in the terminal
 
 ## Stage 3: Piece Classes
-- [ ]
+- [ ] Piece base class
+- [ ] Pawn subclass
+- [ ] Rook subclass
+- [ ] Knight subclass
+- [ ] Bishop subclass
+- [ ] Queen subclass
+- [ ] King subclass
+- [ ] Board Integration
 
 ## Stage 4: Game Logic
 - [ ]
