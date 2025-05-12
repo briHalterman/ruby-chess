@@ -16,7 +16,7 @@ class Board
     @grid[row][column]
   end
 
-  def move_piece
-    
+  def move_piece(current_position, new_position)
+
   end
 end
