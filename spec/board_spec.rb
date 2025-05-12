@@ -27,7 +27,7 @@ RSpec.describe Board do
       mock_piece = double('Piece')
       board.place_piece(mock_piece, [1, 1])
 
-      expect(board.piece_at([1, 1])).to eq(piece)
+      expect(board.piece_at([1, 1])).to eq(mock_piece)
     end
   end
 end

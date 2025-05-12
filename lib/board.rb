@@ -10,4 +10,8 @@ class Board
     row, column = position
     @grid[row][column] = piece
   end
+
+  def piece_at
+
+  end
 end
