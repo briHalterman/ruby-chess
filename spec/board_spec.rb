@@ -10,4 +10,14 @@ RSpec.describe Board do
       expect(board.grid.all? { |row| row.size == 8 }).to be true
     end
   end
+
+  describe '#place_piece' do
+    it 'places a piece at the given position on the grid' do
+      board = Board.new
+      mock_piece = double('Piece')
+      board.place_piece(mock_piece, [3, 4])
+
+      expect(board.grid[3][4]).to eq(mock_piece)
+    end
+  end
 end
