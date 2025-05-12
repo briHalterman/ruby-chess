@@ -20,7 +20,7 @@
 - [x] Render board in the terminal
 
 ## Stage 3: Piece Classes
-- [ ] Piece base class
+- [x] Piece base class
 - [ ] Pawn subclass
 - [ ] Rook subclass
 - [ ] Knight subclass
