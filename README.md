@@ -63,7 +63,7 @@ Each side begins with:
 - The pawn is the only piece that captures diagonally
 
 ![Pawns movement](readme-assets/images/moves/pawn-morning-coffee.jpg)
-![Pawns: morning coffee](readme-assets/images/moves/pawn-first-move-option.jpg)
+![Pawns: morning coffee](readme-assets/images/moves/pawn.jpg)
 
 ### Stretch Goals
 - Stalemate
@@ -72,5 +72,45 @@ Each side begins with:
 - Pawn Promotion
 - Draw by repetition or 50-move rule
 - Play against the Qwerty
+
+## Initial Classes
+
+### Board
+- **Attributes**
+  - 8x8 grid data structure
+  - Current position of all pieces
+- **Methods**
+  - Initializes board with pieces
+  - Moves a piece
+  - Displays the board in the CLI
+
+## Piece
+Subclasses for each type:
+- **Attributes**
+  - Position
+  - Color
+- **Methods**
+  - Validates moves
+
+## Game
+- **Attributes**
+  - Board
+  - Players
+  - Current player
+  - Game state
+- **Methods**
+  - Handles main game loop
+  - Toggles players
+  - Determines check/chackmate
+  - Ends game
+
+## Player
+- **Attributes**
+  - Player color
+  - Player name
+- **Methods**
+  - Prompts and receives input
+
+---
 
 _Images sourced from the [U.S. Chess Federation](https://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html) and used for educational purposes under fair use._

@@ -8,7 +8,7 @@
 - [x] Create basic folder structure
 - [x] Set up RSpec with a test runner and spec_helper.rb
 - [x] Draft MVP scope
-- [ ] Define initial classes (Board, Game, Piece, etc.)
+- [x] Define initial classes (Board, Game, Piece, etc.)
 - [ ] Write first failing test
 
 ## Stage 2: Board Functionality
