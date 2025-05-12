@@ -20,4 +20,14 @@ RSpec.describe Board do
       expect(board.grid[3][4]).to eq(mock_piece)
     end
   end
+
+  describe '#piece_at' do
+    it 'returns the piece at the given position' do
+      board = Board.new
+      mock_piece = double('Piece')
+      board.place_piece(mock_piece, [1, 1])
+
+      expect(board.piece_at([1, 1])).to eq(piece)
+    end
+  end
 end
