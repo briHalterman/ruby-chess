@@ -9,7 +9,7 @@
 - [x] Set up RSpec with a test runner and spec_helper.rb
 - [x] Draft MVP scope
 - [x] Define initial classes (Board, Game, Piece, etc.)
-- [ ] Write first failing test
+- [x] Write first failing test
 
 ## Stage 2: Board Functionality
 - [ ] Initialize an empty 8x8 grid
