@@ -28,4 +28,14 @@ RSpec.describe Board do
       expect(board.piece_at([1, 1])).to eq(mock_piece)
     end
   end
+
+  describe '#move_piece' do
+    it 'moves a piece from one position to another' do
+      board.place_piece(mock_piece, [0, 0])
+      board.move_piece([0, 0], [3, 4])
+
+      expect(board.grid[0][0]).to be_nil
+      expect(board.grid[3][4]).to eq(mock_piece)
+    end
+  end
 end
