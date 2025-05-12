@@ -57,5 +57,12 @@ RSpec.describe Board do
         expect(board.piece_at([1, column])).to eq(:white_pawn)
       end
     end
+
+    it 'places white rooks in the corners of row 1' do
+      board.place_starting_pieces
+
+      expect(board.piece_at([0, 0])).to eq(:white_rook)
+      expect(board.piece_at([0, 7])).to eq(:white_rook)
+    end
   end
 end
