@@ -2,9 +2,9 @@
 
 ## Stage 1: Set Up & Planning
 - [x] Create local project directory
-- [ ] Create TASKS.md
-- [ ] Initialize git repo and create first commit
-- [ ] Set up README and .gitignore
+- [x] Create TASKS.md
+- [x] Initialize git repo and create first commit
+- [x] Set up README and .gitignore
 - [ ] Create basic folder structure
 - [ ] Set up RSpec with a test runner and spec_helper.rb
 - [ ] Draft MVP scope in notebook
@@ -27,4 +27,4 @@
 - [ ]
 
 ## Stage 7: Final Touches
-- [ ] 
+- [ ]
