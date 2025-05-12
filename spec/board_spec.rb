@@ -38,4 +38,14 @@ RSpec.describe Board do
       expect(board.grid[3][4]).to eq(mock_piece)
     end
   end
+
+  describe '#place_starting_pieces' do
+    it 'places white pieces in starting positions' do
+      board.place_starting_pieces
+
+      expect(board.piece_at([0, 0])).not_to be_nil
+      expect(board.piece_at([1, 0])).not_to be_nil
+      expect(board.piece_at([1, 4])).not_to be_nil
+    end
+  end
 end
