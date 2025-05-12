@@ -25,12 +25,15 @@ class Board
   end
 
   def place_starting_pieces
-    # Place 8 white pawns on row 1
+
+    # Place white pieces
+
+    # Place 8 white pawns on row 2
     8.times do |column|
       place_piece(:white_pawn, [1, column])
     end
 
-    # Place white rooks in the corners of row 0
+    # Place white rooks in the corners of row 1
     place_piece(:white_rook, [0,0])
     place_piece(:white_rook, [0,7])
 
@@ -47,5 +50,30 @@ class Board
 
     # Place white king next to white queen
     place_piece(:white_king, [0,4])
+
+    #Place black pieces
+
+    # Place 8 black pawns on row 7
+    8.times do |column|
+      place_piece(:black_pawn, [6, column])
+    end
+
+    # Place black rooks in the corners of row 8
+    place_piece(:black_rook, [7,0])
+    place_piece(:black_rook, [7,7])
+
+    # Place black knights next to black rooks
+    place_piece(:black_knight, [7,1])
+    place_piece(:black_knight, [7,6])
+
+    # Place black bishops next to black knights
+    place_piece(:black_bishop, [7,2])
+    place_piece(:black_bishop, [7,5])
+
+    # Place black queen on middle black square
+    place_piece(:black_queen, [7,3])
+
+    # Place black king next to black queen
+    place_piece(:black_king, [7,4])
   end
 end

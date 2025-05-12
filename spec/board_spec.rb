@@ -42,14 +42,14 @@ RSpec.describe Board do
   describe '#place_starting_pieces' do
     before { board.place_starting_pieces }
 
-  # OBSOLETE
-  #   it 'places white pieces in starting positions' do
-  #     board.place_starting_pieces
+    # OBSOLETE
+    #   it 'places white pieces in starting positions' do
+    #     board.place_starting_pieces
 
-  #     expect(board.piece_at([0, 0])).not_to be_nil
-  #     expect(board.piece_at([1, 0])).not_to be_nil
-  #     expect(board.piece_at([1, 4])).not_to be_nil
-  #   end
+    #     expect(board.piece_at([0, 0])).not_to be_nil
+    #     expect(board.piece_at([1, 0])).not_to be_nil
+    #     expect(board.piece_at([1, 4])).not_to be_nil
+    #   end
 
     context 'white pawns' do
       it 'places white pawns on row 2' do
@@ -83,9 +83,8 @@ RSpec.describe Board do
         expect(board.piece_at([0, 4])).to eq(:white_king)
       end
     end
-  end
 
-  context 'black pawns' do
+    context 'black pawns' do
       it 'places black pawns on row 7' do
         8.times do |column|
           expect(board.piece_at([6, column])).to eq(:black_pawn)
@@ -93,28 +92,29 @@ RSpec.describe Board do
       end
     end
 
-  context 'black major pieces' do
-    it 'places black rooks in the corners of row 8' do
-      expect(board.piece_at([7, 0])).to eq(:black_rook)
-      expect(board.piece_at([7, 7])).to eq(:black_rook)
-    end
+    context 'black major pieces' do
+      it 'places black rooks in the corners of row 8' do
+        expect(board.piece_at([7, 0])).to eq(:black_rook)
+        expect(board.piece_at([7, 7])).to eq(:black_rook)
+      end
 
-    it 'places black knights next to black rooks' do
-      expect(board.piece_at([7, 1])).to eq(:black_knight)
-      expect(board.piece_at([7, 6])).to eq(:black_knight)
-    end
+      it 'places black knights next to black rooks' do
+        expect(board.piece_at([7, 1])).to eq(:black_knight)
+        expect(board.piece_at([7, 6])).to eq(:black_knight)
+      end
 
-    it 'places black bishops next to black knights' do
-      expect(board.piece_at([7, 5])).to eq(:black_bishop)
-      expect(board.piece_at([7, 2])).to eq(:black_bishop)
-    end
+      it 'places black bishops next to black knights' do
+        expect(board.piece_at([7, 5])).to eq(:black_bishop)
+        expect(board.piece_at([7, 2])).to eq(:black_bishop)
+      end
 
-    it 'places black queen on middle black square' do
-      expect(board.piece_at([7, 4])).to eq(:black_queen)
-    end
+      it 'places black queen on middle black square' do
+        expect(board.piece_at([7, 3])).to eq(:black_queen)
+      end
 
-    it 'places black king next to black queen' do
-      expect(board.piece_at([7, 3])).to eq(:black_king)
+      it 'places black king next to black queen' do
+        expect(board.piece_at([7, 4])).to eq(:black_king)
+      end
     end
   end
 end
