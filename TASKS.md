@@ -7,7 +7,7 @@
 - [x] Set up README and .gitignore
 - [x] Create basic folder structure
 - [x] Set up RSpec with a test runner and spec_helper.rb
-- [ ] Draft MVP scope in notebook
+- [x] Draft MVP scope
 - [ ] Define initial classes (Board, Game, Piece, etc.)
 - [ ] Write first failing test
 
@@ -27,4 +27,9 @@
 - [ ]
 
 ## Stage 7: Final Touches
-- [ ]
+- [ ] Prevent self-check
+- [ ] Error messages for input validation
+- [ ] Improve board rendering
+- [ ] Polish README and usage instructions
+- [ ] Manual playtesting
+- [ ] Rubocop
