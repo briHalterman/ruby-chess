@@ -40,6 +40,7 @@ RSpec.describe Board do
   end
 
   describe '#place_starting_pieces' do
+    before { board.place_starting_pieces }
 
   # OBSOLETE
   #   it 'places white pieces in starting positions' do
@@ -51,16 +52,12 @@ RSpec.describe Board do
   #   end
 
     it 'places white pawns on row 2' do
-      board.place_starting_pieces
-
       8.times do |column|
         expect(board.piece_at([1, column])).to eq(:white_pawn)
       end
     end
 
     it 'places white rooks in the corners of row 1' do
-      board.place_starting_pieces
-
       expect(board.piece_at([0, 0])).to eq(:white_rook)
       expect(board.piece_at([0, 7])).to eq(:white_rook)
     end
