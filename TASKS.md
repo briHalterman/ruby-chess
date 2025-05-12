@@ -15,7 +15,7 @@
 - [x] Initialize an empty 8x8 grid
 - [x] Place a piece at a specific position
 - [x] Retrieve a piece from a position
-- [ ] Move a piece from one square to another
+- [x] Move a piece from one square to another
 - [ ] Set up initial chessboard
 - [ ] Render board in the terminal
 

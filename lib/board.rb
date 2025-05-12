@@ -17,6 +17,10 @@ class Board
   end
 
   def move_piece(current_position, new_position)
+    current_row, current_column = current_position
+    new_row, new_column = new_position
 
+    @grid[new_row][new_column] = @grid[current_row][current_column]
+    @grid[current_row][current_column] = nil
   end
 end
