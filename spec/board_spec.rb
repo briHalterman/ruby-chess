@@ -117,4 +117,20 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe '#display_board' do
+    it 'renders the current board to the terminal' do
+      board.place_starting_pieces
+      output = board.display_board
+      expect(output).to include("8 | ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜")
+      expect(output).to include("7 | ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟")
+      expect(output).to include("6 |")
+      expect(output).to include("5 |")
+      expect(output).to include("4 |")
+      expect(output).to include("3 |")
+      expect(output).to include("2 | ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙")
+      expect(output).to include("1 | ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖")
+      expect(output).to include("  a b c d e f g h")
+    end
+  end
 end

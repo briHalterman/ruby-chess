@@ -16,7 +16,7 @@
 - [x] Place a piece at a specific position
 - [x] Retrieve a piece from a position
 - [x] Move a piece from one square to another
-- [ ] Set up initial chessboard
+- [x] Set up initial chessboard
 - [ ] Render board in the terminal
 
 ## Stage 3: Piece Classes
