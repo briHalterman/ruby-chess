@@ -47,5 +47,13 @@ RSpec.describe Board do
       expect(board.piece_at([1, 0])).not_to be_nil
       expect(board.piece_at([1, 4])).not_to be_nil
     end
+
+    it 'places white pawns on row 2' do
+      board.place_starting_pieces
+
+      8.times do |column|
+        expect(board.piece_at([1, column])).to eq(:white_pawn)
+      end
+    end
   end
 end

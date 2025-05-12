@@ -25,7 +25,7 @@ class Board
   end
 
   def place_starting_pieces
-    mock_piece = :white_rook  # placeholder implementation
+    mock_piece = :white_pawn  # placeholder implementation
     place_piece(mock_piece, [0, 0])
     place_piece(mock_piece, [1, 0])
     place_piece(mock_piece, [1, 4])
