@@ -61,5 +61,10 @@ RSpec.describe Board do
       expect(board.piece_at([0, 0])).to eq(:white_rook)
       expect(board.piece_at([0, 7])).to eq(:white_rook)
     end
+
+    it 'places white knights next to white rooks' do
+      expect(board.piece_at([0, 1])).to eq(:white_knight)
+      expect(board.piece_at([0, 2])).to eq(:white_knight)
+    end
   end
 end
