@@ -41,5 +41,8 @@ class Board
     # Place white bishops next to white knights
     place_piece(:white_bishop, [0,2])
     place_piece(:white_bishop, [0,5])
+
+    # Place white queen on middle white square
+    place_piece(:white_queen, [0,3])
   end
 end
