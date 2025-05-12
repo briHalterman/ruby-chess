@@ -75,5 +75,9 @@ RSpec.describe Board do
     it 'places white queen on middle white square' do
       expect(board.piece_at([0, 3])).to eq(:white_queen)
     end
+
+    it 'places white king next to white queen' do
+      expect(board.piece_at([0, 4])).to eq(:white_king)
+    end
   end
 end
