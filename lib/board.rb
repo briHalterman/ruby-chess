@@ -47,7 +47,17 @@ class Board
     end
   end
 
+  UNICODE_PIECES = {
+    white_pawn: '♙', white_rook: '♖', white_knight: '♘', white_bishop: '♗', white_queen: '♕', white_king: '♔',
+    black_pawn: '♟', black_rook: '♜', black_knight: '♞', black_bishop: '♝', black_queen: '♛', black_king: '♚'
+  }
+
   def display_board
-    
+    rows = @grid.map.with_index.reverse_each.map do |row, index|
+      pieces = row.map { |cell| UNICODE_PIECES[cell] || ' ' }
+      "#{index + 1} | #{pieces.join(' ')}"
+    end
+    rows << "    a b c d e f g h"
+    rows.join("\n")
   end
 end
