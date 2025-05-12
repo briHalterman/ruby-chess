@@ -51,33 +51,37 @@ RSpec.describe Board do
   #     expect(board.piece_at([1, 4])).not_to be_nil
   #   end
 
-    it 'places white pawns on row 2' do
-      8.times do |column|
-        expect(board.piece_at([1, column])).to eq(:white_pawn)
+    context 'white pawns' do
+      it 'places white pawns on row 2' do
+        8.times do |column|
+          expect(board.piece_at([1, column])).to eq(:white_pawn)
+        end
       end
     end
 
-    it 'places white rooks in the corners of row 1' do
-      expect(board.piece_at([0, 0])).to eq(:white_rook)
-      expect(board.piece_at([0, 7])).to eq(:white_rook)
-    end
+    context 'white major pieces' do
+      it 'places white rooks in the corners of row 1' do
+        expect(board.piece_at([0, 0])).to eq(:white_rook)
+        expect(board.piece_at([0, 7])).to eq(:white_rook)
+      end
 
-    it 'places white knights next to white rooks' do
-      expect(board.piece_at([0, 1])).to eq(:white_knight)
-      expect(board.piece_at([0, 6])).to eq(:white_knight)
-    end
+      it 'places white knights next to white rooks' do
+        expect(board.piece_at([0, 1])).to eq(:white_knight)
+        expect(board.piece_at([0, 6])).to eq(:white_knight)
+      end
 
-    it 'places white bishops next to white knights' do
-      expect(board.piece_at([0, 5])).to eq(:white_bishop)
-      expect(board.piece_at([0, 2])).to eq(:white_bishop)
-    end
+      it 'places white bishops next to white knights' do
+        expect(board.piece_at([0, 5])).to eq(:white_bishop)
+        expect(board.piece_at([0, 2])).to eq(:white_bishop)
+      end
 
-    it 'places white queen on middle white square' do
-      expect(board.piece_at([0, 3])).to eq(:white_queen)
-    end
+      it 'places white queen on middle white square' do
+        expect(board.piece_at([0, 3])).to eq(:white_queen)
+      end
 
-    it 'places white king next to white queen' do
-      expect(board.piece_at([0, 4])).to eq(:white_king)
+      it 'places white king next to white queen' do
+        expect(board.piece_at([0, 4])).to eq(:white_king)
+      end
     end
   end
 end
