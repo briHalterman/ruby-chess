@@ -37,5 +37,9 @@ class Board
     # Place white knights next to white rooks
     place_piece(:white_knight, [0,1])
     place_piece(:white_knight, [0,6])
+
+    # Place white bishops next to white knights
+    place_piece(:white_bishop, [0,2])
+    place_piece(:white_bishop, [0,5])
   end
 end
