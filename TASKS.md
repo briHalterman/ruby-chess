@@ -21,8 +21,8 @@
 
 ## Stage 3: Piece Classes
 - [x] Piece base class
-- [ ] Pawn subclass
-- [ ] Rook subclass
+- [x] Pawn subclass
+- [x] Rook subclass
 - [ ] Knight subclass
 - [ ] Bishop subclass
 - [ ] Queen subclass
