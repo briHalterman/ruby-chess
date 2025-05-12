@@ -14,7 +14,7 @@
 ## Stage 2: Board Functionality
 - [x] Initialize an empty 8x8 grid
 - [x] Place a piece at a specific position
-- [ ] Retrieve a piece from a position
+- [x] Retrieve a piece from a position
 - [ ] Move a piece from one square to another
 - [ ] Set up initial chessboard
 - [ ] Render board in the terminal
