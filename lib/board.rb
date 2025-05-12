@@ -29,5 +29,9 @@ class Board
     8.times do |column|
       place_piece(:white_pawn, [1, column])
     end
+
+    # Place white rooks in the corners of row 0
+    place_piece(:white_rook, [0,0])
+    place_piece(:white_rook, [0,7])
   end
 end
