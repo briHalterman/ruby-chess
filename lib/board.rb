@@ -25,55 +25,25 @@ class Board
   end
 
   def place_starting_pieces
+    place_pawns(:white, 1)
+    place_major_pieces(:white, 0)
+    place_pawns(:black, 6)
+    place_major_pieces(:black, 7)
+  end
 
-    # Place white pieces
-
-    # Place 8 white pawns on row 2
+  def place_pawns(color, row)
     8.times do |column|
-      place_piece(:white_pawn, [1, column])
+      place_piece(:"#{color}_pawn", [row, column])
     end
+  end
 
-    # Place white rooks in the corners of row 1
-    place_piece(:white_rook, [0,0])
-    place_piece(:white_rook, [0,7])
+  def place_major_pieces(color, row)
+    pieces = [
+      :rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook
+    ]
 
-    # Place white knights next to white rooks
-    place_piece(:white_knight, [0,1])
-    place_piece(:white_knight, [0,6])
-
-    # Place white bishops next to white knights
-    place_piece(:white_bishop, [0,2])
-    place_piece(:white_bishop, [0,5])
-
-    # Place white queen on middle white square
-    place_piece(:white_queen, [0,3])
-
-    # Place white king next to white queen
-    place_piece(:white_king, [0,4])
-
-    #Place black pieces
-
-    # Place 8 black pawns on row 7
-    8.times do |column|
-      place_piece(:black_pawn, [6, column])
+    pieces.each_with_index do |piece, column|
+      place_piece(:"#{color}_#{piece}", [row, column])
     end
-
-    # Place black rooks in the corners of row 8
-    place_piece(:black_rook, [7,0])
-    place_piece(:black_rook, [7,7])
-
-    # Place black knights next to black rooks
-    place_piece(:black_knight, [7,1])
-    place_piece(:black_knight, [7,6])
-
-    # Place black bishops next to black knights
-    place_piece(:black_bishop, [7,2])
-    place_piece(:black_bishop, [7,5])
-
-    # Place black queen on middle black square
-    place_piece(:black_queen, [7,3])
-
-    # Place black king next to black queen
-    place_piece(:black_king, [7,4])
   end
 end
