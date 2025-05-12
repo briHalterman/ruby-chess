@@ -7,6 +7,7 @@ class Board
   end
 
   def place_piece(piece, position)
-
+    row, column = position
+    @grid[row][column] = piece
   end
 end
