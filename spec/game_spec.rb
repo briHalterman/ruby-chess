@@ -36,4 +36,10 @@ RSpec.describe Game do
       expect(game).to have_received(:attempt_move).with("e2 e4")
     end
   end
+
+  describe '#valid_input_format?' do
+    it 'returns true for valid format like "e2 e4"' do
+      expect(game.valid_input_format?("e2 e4")).to be true
+    end
+  end
 end

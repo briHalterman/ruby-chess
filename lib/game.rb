@@ -29,4 +29,8 @@ class Game
     move = current_player.get_move
     attempt_move(move)
   end
+
+  def valid_input_format?(input)
+    true
+  end
 end
