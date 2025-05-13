@@ -42,11 +42,13 @@
 - [x] Ensure piece belongs to current player
 - [x] Ensure destination is a legal move
 - [x] Move piece if valid, re-prompt is invalid
-- [ ] Piece movement logic
+- [x] Piece movement logic
+- [ ] Prevent capturing your own piece
+- [ ] Replace a captured piece with the moving piece
+- [ ] Detect & block moving through other pieces (rooks, bishops, queens)
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
-- [ ] Prevent moving to the same square
 - [ ] Switch players
 - [ ] Allow manual exit
 
