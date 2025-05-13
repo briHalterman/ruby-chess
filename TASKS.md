@@ -36,10 +36,10 @@
 - [x] Create player structure
 - [x] Prompt player for move input
 - [x] Print welcome message and instructions
+- [ ] Validate move input
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
-- [ ] Validate move input
 - [ ] Prevent moving to the same square
 - [ ] Ensure source square has a piece
 - [ ] Ensure piece belongs to current player

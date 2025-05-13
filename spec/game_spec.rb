@@ -27,4 +27,13 @@ RSpec.describe Game do
       expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.q\., "e2 e4"\)/).to_stdout
     end
   end
+
+  describe '#play_turn' do
+    it 'gets input and attempts to move a piece' do
+      allow(game.current_player).to receive(:get_move).and_return("e2 e4")
+      allow(game).to receive(:attempt_move)
+      game.play_turn
+      expect(game).to have_received(:attempt_move).with("e2 e4")
+    end
+  end
 end
