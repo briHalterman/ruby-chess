@@ -172,5 +172,29 @@ RSpec.describe Game do
         expect(game.valid_input_format?("g1 g2")).to be false
       end
     end
+
+    context 'when piece is a bishop' do
+      it 'returns true for a valid bishop move' do
+        from_position = [7, 2]
+        to_position = [4, 5]
+
+        bishop = double("Bishop", color: :white)
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(bishop)
+        allow(bishop).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+        expect(game.valid_input_format?("c1 f4")).to be true
+      end
+
+      it 'returns false for an invalid bishop move' do
+        from_position = [7, 2] # c1
+        to_position = [7, 3]   # d1 (not diagonal)
+
+        bishop = double("Bishop", color: :white)
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(bishop)
+        allow(bishop).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
+
+        expect(game.valid_input_format?("c1 d1")).to be false
+      end
+    end
   end
 end
