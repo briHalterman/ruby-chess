@@ -16,4 +16,8 @@ class Game
   def display_board
     puts board.display_board
   end
+
+  def display_welcome_message
+    puts "Let the game begin! White to move. Type 'exit' to leave, or make your move... (e.q., \"e2 e4\")"
+  end
 end

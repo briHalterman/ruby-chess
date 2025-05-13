@@ -11,7 +11,6 @@ RSpec.describe Game do
     end
 
     it 'initializes two players' do
-      game = Game.new
       expect(game.white_player).to be_a(Player)
       expect(game.black_player).to be_a(Player)
     end
@@ -19,8 +18,13 @@ RSpec.describe Game do
 
   describe '#display_board' do
     it 'prints the board to the terminal' do
-      game = Game.new
       expect { game.display_board }.to output(/8 \| ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜/).to_stdout
+    end
+  end
+
+  describe '#display_welcome_message' do
+    it 'prints a welcome message and instructions to the terminal' do
+      expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.q\., "e2 e4"\)/).to_stdout
     end
   end
 end

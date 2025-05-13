@@ -35,7 +35,7 @@
 - [x] Set current player to white
 - [x] Create player structure
 - [x] Prompt player for move input
-- [ ] Print welcome message and instructions
+- [x] Print welcome message and instructions
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
@@ -61,6 +61,7 @@
 
 ## Stage 7: Final Touches
 - [ ] Prevent self-check
+- [ ] Improve welcome message
 - [ ] Error messages for input validation
 - [ ] Improve board rendering
 - [ ] Polish README and usage instructions
