@@ -86,9 +86,7 @@ RSpec.describe Game do
 
       expect(game.valid_input_format?("e2 e5")).to be false
     end
-  end
 
-  describe '#valid_move?' do
     it 'returns true if the piece can legally move to the destination cell' do
       from_position = [6, 4]
       to_position = [5, 4]
