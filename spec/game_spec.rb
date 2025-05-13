@@ -39,6 +39,10 @@ RSpec.describe Game do
 
   describe '#valid_input_format?' do
     it 'returns true for valid format like "e2 e4"' do
+      mock_piece = double("Piece", color: :white)
+      allow(game.board).to receive(:piece_at).with([6, 4]).and_return(mock_piece)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+      
       expect(game.valid_input_format?("e2 e4")).to be true
     end
 
@@ -55,6 +59,14 @@ RSpec.describe Game do
 
     it 'returns false if the source square has no piece' do
       allow(game.board).to receive(:piece_at).with([5, 4]).and_return(nil)
+      expect(game.valid_input_format?("e3 e4")).to be false
+    end
+
+    it 'returns false if the piece does not belong to the current player' do
+      mock_piece = double("Piece", color: :black)
+      allow(game.board).to receive(:piece_at).with([5, 4]).and_return(mock_piece)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+
       expect(game.valid_input_format?("e3 e4")).to be false
     end
   end

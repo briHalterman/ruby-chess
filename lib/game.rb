@@ -43,7 +43,9 @@ class Game
 
     from, _to = cells
     from_position = parse_position(from)
-    return false if board.piece_at(from_position).nil?
+    piece = board.piece_at(from_position)
+    return false if piece.nil?
+    return false unless piece.color == current_player.color
 
     true
   end
