@@ -31,6 +31,8 @@ class Game
   end
 
   def valid_input_format?(input)
-    true
+    cells = input.split(" ")
+    return false unless cells.length == 2
+    !!(input =~ /\A[a-h][1-8] [a-h][1-8]\z/)
   end
 end

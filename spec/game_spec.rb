@@ -41,5 +41,9 @@ RSpec.describe Game do
     it 'returns true for valid format like "e2 e4"' do
       expect(game.valid_input_format?("e2 e4")).to be true
     end
+
+    it 'returns false for invalid input like "knight to e4"' do
+      expect(game.valid_input_format?("knight to e4")).to be false
+    end
   end
 end
