@@ -26,6 +26,15 @@ class Game
       from_str, to_str = input.split
       from_position = parse_position(from_str)
       to_position = parse_position(to_str)
+
+      piece = board.piece_at(from_position)
+      target_piece = board.piece_at(to_position)
+
+      if target_piece && target_piece.color == piece.color
+        puts "You can't capture your own piece."
+        return
+      end
+
       board.move_piece(from_position, to_position)
     else
       puts "Invalid move. Please try again."

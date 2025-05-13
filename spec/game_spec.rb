@@ -281,5 +281,22 @@ RSpec.describe Game do
 
       game.attempt_move("e2 e4")
     end
+
+    it 'does not allow capturing you own piece' do
+      input = "e2 e1"
+      from_position = [6, 4]
+      to_position = [7, 4]
+
+      own_piece = double("Piece", color: :white)
+      target_piece = double("Piece", color: :white)
+
+      allow(game).to receive(:valid_input_format?).with(input).and_return(true)
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(own_piece)
+      allow(game.board).to receive(:piece_at).with(to_position).and_return(target_piece)
+
+      expect(game.board).not_to receive(:move_piece)
+
+      game.attempt_move(input)
+    end
   end
 end

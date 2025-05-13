@@ -43,7 +43,7 @@
 - [x] Ensure destination is a legal move
 - [x] Move piece if valid, re-prompt is invalid
 - [x] Piece movement logic
-- [ ] Prevent capturing your own piece
+- [x] Prevent capturing your own piece
 - [ ] Replace a captured piece with the moving piece
 - [ ] Detect & block moving through other pieces (rooks, bishops, queens)
 - [ ] Loop through turns until game ends
