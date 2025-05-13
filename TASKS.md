@@ -25,8 +25,8 @@
 - [x] Rook subclass
 - [x] Knight subclass
 - [x] Bishop subclass
-- [ ] Queen subclass
-- [ ] King subclass
+- [x] Queen subclass
+- [x] King subclass
 - [ ] Board Integration
 
 ## Stage 4: Game Logic
