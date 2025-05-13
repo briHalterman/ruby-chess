@@ -33,20 +33,20 @@
 - [x] Initialize the board
 - [x] Place starting pieces on the board
 - [x] Set current player to white
-- [ ] Create player structure
+- [x] Create player structure
+- [x] Prompt player for move input
 - [ ] Print welcome message and instructions
 - [ ] Loop through turns until game ends
-  - [ ] Display board on each turn
-  - [ ] Show current player's turn
-  - [ ] Prompt player for move input
-  - [ ] Validate move input
-  - [ ] Prevent moving to the same square
-  - [ ] Ensure source square has a piece
-  - [ ] Ensure piece belongs to current player
-  - [ ] Ensure destination is a legal move
-  - [ ] Move piece if valid, re-prompt is invalid
-  - [ ] Switch players
-  - [ ] Allow manual exit
+- [ ] Display board on each turn
+- [ ] Show current player's turn
+- [ ] Validate move input
+- [ ] Prevent moving to the same square
+- [ ] Ensure source square has a piece
+- [ ] Ensure piece belongs to current player
+- [ ] Ensure destination is a legal move
+- [ ] Move piece if valid, re-prompt is invalid
+- [ ] Switch players
+- [ ] Allow manual exit
 
 ## Stage 5: Check & Checkmate
 - [ ] Detect check
