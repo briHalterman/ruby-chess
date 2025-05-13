@@ -40,6 +40,7 @@ RSpec.describe Game do
   describe '#valid_input_format?' do
     let(:mock_piece) { double("Piece", color: :white) }
     let(:current_player) { double("Player", color: :white) }
+    let(:black_piece) { double("Piece", color: :black)}
 
     before do
       allow(game).to receive(:current_player).and_return(current_player)
@@ -72,8 +73,7 @@ RSpec.describe Game do
     end
 
     it 'returns false if the piece does not belong to the current player' do
-      mock_piece = double("Piece", color: :black)
-      allow(game.board).to receive(:piece_at).with([5, 4]).and_return(mock_piece)
+      allow(game.board).to receive(:piece_at).with([5, 4]).and_return(black_piece)
 
       expect(game.valid_input_format?("e3 e4")).to be false
     end
