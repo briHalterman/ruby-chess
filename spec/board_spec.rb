@@ -54,66 +54,119 @@ RSpec.describe Board do
     context 'white pawns' do
       it 'places white pawns on row 2' do
         8.times do |column|
-          expect(board.piece_at([1, column])).to eq(:white_pawn)
+          # expect(board.piece_at([1, column])).to eq(:white_pawn) <- OBSOLETE
+          piece = board.piece_at([1, column])
+          expect(piece).to be_a(Pawn)
+          expect(piece.color).to eq(:white)
         end
       end
     end
 
     context 'white major pieces' do
       it 'places white rooks in the corners of row 1' do
-        expect(board.piece_at([0, 0])).to eq(:white_rook)
-        expect(board.piece_at([0, 7])).to eq(:white_rook)
+        # expect(board.piece_at([0, 0])).to eq(:white_rook) <- OBSOLETE
+        piece = board.piece_at([0, 0])
+        expect(piece).to be_a(Rook)
+        expect(piece.color).to eq(:white)
+        # expect(board.piece_at([0, 7])).to eq(:white_rook) <- OBSOLETE
+        piece = board.piece_at([0, 7])
+        expect(piece).to be_a(Rook)
+        expect(piece.color).to eq(:white)
       end
 
       it 'places white knights next to white rooks' do
-        expect(board.piece_at([0, 1])).to eq(:white_knight)
-        expect(board.piece_at([0, 6])).to eq(:white_knight)
+        # expect(board.piece_at([0, 1])).to eq(:white_knight) <- OBSOLETE
+        piece = board.piece_at([0, 1])
+        expect(piece).to be_a(Knight)
+        expect(piece.color).to eq(:white)
+        # expect(board.piece_at([0, 6])).to eq(:white_knight) <- OBSOLETE
+        piece = board.piece_at([0, 6])
+        expect(piece).to be_a(Knight)
+        expect(piece.color).to eq(:white)
       end
 
       it 'places white bishops next to white knights' do
-        expect(board.piece_at([0, 5])).to eq(:white_bishop)
-        expect(board.piece_at([0, 2])).to eq(:white_bishop)
+        # expect(board.piece_at([0, 5])).to eq(:white_bishop) <- OBSOLETE
+        piece = board.piece_at([0, 5])
+        expect(piece).to be_a(Bishop)
+        expect(piece.color).to eq(:white)
+        # expect(board.piece_at([0, 2])).to eq(:white_bishop) <- OBSOLETE
+        piece = board.piece_at([0, 2])
+        expect(piece).to be_a(Bishop)
+        expect(piece.color).to eq(:white)
       end
 
       it 'places white queen on middle white square' do
-        expect(board.piece_at([0, 3])).to eq(:white_queen)
+        # expect(board.piece_at([0, 3])).to eq(:white_queen) <- OBSOLETE
+        piece = board.piece_at([0, 3])
+        expect(piece).to be_a(Queen)
+        expect(piece.color).to eq(:white)
       end
 
       it 'places white king next to white queen' do
-        expect(board.piece_at([0, 4])).to eq(:white_king)
+        # expect(board.piece_at([0, 4])).to eq(:white_king) <- OBSOLETE
+        piece = board.piece_at([0, 4])
+        expect(piece).to be_a(King)
+        expect(piece.color).to eq(:white)
       end
     end
 
     context 'black pawns' do
-      it 'places black pawns on row 7' do
+      it 'places black pawns on row 2' do
         8.times do |column|
-          expect(board.piece_at([6, column])).to eq(:black_pawn)
+          # expect(board.piece_at([6, column])).to eq(:black_pawn) <- OBSOLETE
+          piece = board.piece_at([6, column])
+          expect(piece).to be_a(Pawn)
+          expect(piece.color).to eq(:black)
         end
       end
     end
-
     context 'black major pieces' do
       it 'places black rooks in the corners of row 8' do
-        expect(board.piece_at([7, 0])).to eq(:black_rook)
-        expect(board.piece_at([7, 7])).to eq(:black_rook)
+        # expect(board.piece_at([7, 0])).to eq(:black_rook) <- OBSOLETE
+          piece = board.piece_at([7, 0])
+          expect(piece).to be_a(Rook)
+          expect(piece.color).to eq(:black)
+        # expect(board.piece_at([7, 7])).to eq(:black_rook) <- OBSOLETE
+          piece = board.piece_at([7, 7])
+          expect(piece).to be_a(Rook)
+          expect(piece.color).to eq(:black)
       end
 
       it 'places black knights next to black rooks' do
-        expect(board.piece_at([7, 1])).to eq(:black_knight)
-        expect(board.piece_at([7, 6])).to eq(:black_knight)
+        # expect(board.piece_at([7, 1])).to eq(:black_knight) <- OBSOLETE
+          piece = board.piece_at([7, 1])
+          expect(piece).to be_a(Knight)
+          expect(piece.color).to eq(:black)
+        # expect(board.piece_at([7, 6])).to eq(:black_knight) <- OBSOLETE
+          piece = board.piece_at([7, 6])
+          expect(piece).to be_a(Knight)
+          expect(piece.color).to eq(:black)
       end
 
       it 'places black bishops next to black knights' do
-        expect(board.piece_at([7, 5])).to eq(:black_bishop)
-        expect(board.piece_at([7, 2])).to eq(:black_bishop)
+        # expect(board.piece_at([7, 5])).to eq(:black_bishop) <- OBSOLETE
+          piece = board.piece_at([7, 5])
+          expect(piece).to be_a(Bishop)
+          expect(piece.color).to eq(:black)
+        # expect(board.piece_at([7, 2])).to eq(:black_bishop) <- OBSOLETE
+          piece = board.piece_at([7, 2])
+          expect(piece).to be_a(Bishop)
+          expect(piece.color).to eq(:black)
       end
 
       it 'places black queen on middle black square' do
-        expect(board.piece_at([7, 3])).to eq(:black_queen)
+        # expect(board.piece_at([7, 3])).to eq(:black_queen) <- OBSOLETE
+          piece = board.piece_at([7, 3])
+          expect(piece).to be_a(Queen)
+          expect(piece.color).to eq(:black)
       end
 
       it 'places black king next to black queen' do
-        expect(board.piece_at([7, 4])).to eq(:black_king)
+        # expect(board.piece_at([7, 4])).to eq(:black_king) <- OBSOLETE
+          piece = board.piece_at([7, 4])
+          expect(piece).to be_a(King)
+          expect(piece.color).to eq(:black)
       end
     end
   end

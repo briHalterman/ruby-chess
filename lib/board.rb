@@ -33,7 +33,7 @@ class Board
 
   def place_pawns(color, row)
     8.times do |column|
-      place_piece(:"#{color}_pawn", [row, column])
+      place_piece(Pawn.new(color, [row, column]), [row, column])
     end
   end
 
@@ -54,7 +54,7 @@ class Board
 
   def display_board
     rows = @grid.map.with_index.reverse_each.map do |row, index|
-      pieces = row.map { |cell| UNICODE_PIECES[cell] || ' ' }
+      pieces = row.map { |cell| cell&.symbol || ' ' }
       "#{index + 1} | #{pieces.join(' ')}"
     end
     rows << "    a b c d e f g h"
