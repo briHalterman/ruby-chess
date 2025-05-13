@@ -24,7 +24,7 @@
 - [x] Pawn subclass
 - [x] Rook subclass
 - [x] Knight subclass
-- [ ] Bishop subclass
+- [x] Bishop subclass
 - [ ] Queen subclass
 - [ ] King subclass
 - [ ] Board Integration
