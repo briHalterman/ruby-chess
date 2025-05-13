@@ -30,18 +30,34 @@
 - [x] Board Integration
 
 ## Stage 4: Game Logic
-- [ ] Control flow
-- [ ] Initialize board and players
-- [ ] Display the board
-- [ ] Handle turn-taking
-- [ ] Move validation
-- [ ] End conditions
+- [x] Initialize the board
+- [x] Place starting pieces on the board
+- [x] Set current player to white
+- [ ] Create player structure
+- [ ] Print welcome message and instructions
+- [ ] Loop through turns until game ends
+  - [ ] Display board on each turn
+  - [ ] Show current player's turn
+  - [ ] Prompt player for move input
+  - [ ] Validate move input
+  - [ ] Prevent moving to the same square
+  - [ ] Ensure source square has a piece
+  - [ ] Ensure piece belongs to current player
+  - [ ] Ensure destination is a legal move
+  - [ ] Move piece if valid, re-prompt is invalid
+  - [ ] Switch players
+  - [ ] Allow manual exit
 
 ## Stage 5: Check & Checkmate
-- [ ]
+- [ ] Detect check
+- [ ] Detect checkmate
+- [ ] Declare winner
 
 ## Stage 6: Save/Load
-- [ ]
+- [ ] Serialize game state
+- [ ] Write game state to a file
+- [ ] Load and deserialize saved game
+- [ ] Resume play from saved state
 
 ## Stage 7: Final Touches
 - [ ] Prevent self-check

@@ -9,6 +9,12 @@ RSpec.describe Game do
     it 'initializes a board' do
       expect(game.board).to be_a(Board)
     end
+
+    it 'initializes two players' do
+      game = Game.new
+      expect(game.white_player).to be_a(Player)
+      expect(game.black_player).to be_a(Player)
+    end
   end
 
   describe '#display_board' do
