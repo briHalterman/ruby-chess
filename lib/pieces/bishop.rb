@@ -10,6 +10,21 @@ class Bishop < Piece
     row_delta = (to_position[0] - from_position[0]).abs
     column_delta = (to_position[1] - from_position[1]).abs
 
-    row_delta == column_delta
+    return false unless row_delta == column_delta
+
+    row_step = (to_position[0] - from_position[0]) <=> 0
+    column_step = (to_position[1] - from_position[1]) <=> 0
+
+    current_row = from_position[0] + row_step
+    current_column = from_position[1] + column_step
+
+    while [current_row, current_column] != to_position
+      return false unless board.piece_at([current_row, current_column]).nil?
+
+      current_row += row_step
+      current_column += column_step
+    end
+
+    true
   end
 end

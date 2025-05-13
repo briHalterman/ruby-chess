@@ -45,7 +45,7 @@
 - [x] Piece movement logic
 - [x] Prevent capturing your own piece
 - [x] Replace a captured piece with the moving piece
-- [ ] Detect & block moving through other pieces (~~rooks~~, bishops, queens)
+- [ ] Detect & block moving through other pieces (~~rooks~~, ~~bishops~~, queens)
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
