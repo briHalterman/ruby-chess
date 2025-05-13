@@ -42,6 +42,14 @@ RSpec.describe Game do
 
       expect { game.play_turn }.to raise_error(SystemExit)
     end
+
+    it 'displays the board each turn' do
+      allow(game.current_player).to receive(:get_move).and_return("e2 e4")
+      allow(game).to receive(:attempt_move)
+
+      expect(game).to receive(:display_board)
+      game.play_turn
+    end
   end
 
   describe '#valid_input_format?' do

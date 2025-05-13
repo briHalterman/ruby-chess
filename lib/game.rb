@@ -42,6 +42,7 @@ class Game
   end
 
   def play_turn
+    display_board
     move = current_player.get_move
     exit if move.downcase == 'exit'
     attempt_move(move)
