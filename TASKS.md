@@ -40,12 +40,13 @@
 - [x] Handle invalid square reference
 - [x] Ensure source square has a piece
 - [x] Ensure piece belongs to current player
-- [ ] Ensure destination is a legal move
+- [x] Ensure destination is a legal move
+- [x] Move piece if valid, re-prompt is invalid
+- [ ] Piece movement logic
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
 - [ ] Prevent moving to the same square
-- [ ] Move piece if valid, re-prompt is invalid
 - [ ] Switch players
 - [ ] Allow manual exit
 

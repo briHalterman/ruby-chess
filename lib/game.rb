@@ -21,8 +21,15 @@ class Game
     puts "Let the game begin! White to move. Type 'exit' to leave, or make your move... (e.q., \"e2 e4\")"
   end
 
-  def attempt_move(move)
-
+  def attempt_move(input)
+    if valid_input_format?(input)
+      from_str, to_str = input.split
+      from_position = parse_position(from_str)
+      to_position = parse_position(to_str)
+      board.move_piece(from_position, to_position)
+    else
+      puts "Invalid move. Please try again."
+    end
   end
 
   def play_turn

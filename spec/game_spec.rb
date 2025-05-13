@@ -255,4 +255,31 @@ RSpec.describe Game do
       end
     end
   end
+
+  describe '#attempt_move' do
+    let(:game) { Game.new }
+
+    before do
+      allow(game).to receive(:puts)
+    end
+
+    it 'rejects invalid input' do
+      allow(game).to receive(:valid_input_format?).with("e9 e4").and_return(false)
+      expect(game.board).not_to receive(:move_piece)
+
+      game.attempt_move("e9 e4")
+    end
+
+    it 'moves the piece for valid input' do
+      from_position = [6, 4]
+      to_position = [4, 4]
+
+      allow(game).to receive(:valid_input_format?).with("e2 e4").and_return(true)
+      allow(game).to receive(:parse_position).with("e2").and_return(from_position)
+      allow(game).to receive(:parse_position).with("e4").and_return(to_position)
+      expect(game.board).to receive(:move_piece).with(from_position, to_position)
+
+      game.attempt_move("e2 e4")
+    end
+  end
 end
