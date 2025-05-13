@@ -47,7 +47,7 @@
 - [x] Replace a captured piece with the moving piece
 - [x] Detect & block moving through other pieces (~~rooks~~, ~~bishops~~, ~~queens~~)
 - [x] Loop through turns until game ends
-- [ ] Allow manual exit
+- [x] Allow manual exit
 - [ ] Display board on each turn
 - [ ] Show current player's turn
 - [ ] Switch players

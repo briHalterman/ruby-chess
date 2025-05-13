@@ -35,6 +35,13 @@ RSpec.describe Game do
       game.play_turn
       expect(game).to have_received(:attempt_move).with("e2 e4")
     end
+
+    it 'exits the game when player types "exit"' do
+      game = Game.new
+      allow(game.current_player).to receive(:get_move).and_return("exit")
+
+      expect { game.play_turn }.to raise_error(SystemExit)
+    end
   end
 
   describe '#valid_input_format?' do
