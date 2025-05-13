@@ -196,5 +196,40 @@ RSpec.describe Game do
         expect(game.valid_input_format?("c1 d1")).to be false
       end
     end
+
+    context 'when piece is a queen' do
+      it 'returns true for a valid vertical queen move' do
+        from_position = [7, 3]
+        to_position = [4, 3]
+        queen = double("Queen", color: :white)
+
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(queen)
+        allow(queen).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+        expect(game.valid_input_format?("d1 d4")).to be true
+      end
+
+      it 'return true for a valid diagonal queen move' do
+        from_position = [7, 3]
+        to_position = [4, 6]
+        queen = double("Queen", color: :white)
+
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(queen)
+        allow(queen).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+        expect(game.valid_input_format?("d1 g4")).to be true
+      end
+
+      it 'returns false for an invalid queen move' do
+        from_position = [7, 3]
+        to_position = [6, 5]
+        queen = double("Queen", color: :white)
+
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(queen)
+        allow(queen).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
+
+        expect(game.valid_input_format?("d1 f2")).to be false
+      end
+    end
   end
 end
