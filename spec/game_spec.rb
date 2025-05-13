@@ -45,5 +45,12 @@ RSpec.describe Game do
     it 'returns false for invalid input like "knight to e4"' do
       expect(game.valid_input_format?("knight to e4")).to be false
     end
+
+    it 'returns false for inputs with squares off the board' do
+      expect(game.valid_input_format?("z9 e4")).to be false
+      expect(game.valid_input_format?("e2 i3")).to be false
+      expect(game.valid_input_format?("a0 b9")).to be false
+      expect(game.valid_input_format?("h9 h2")).to be false
+    end
   end
 end
