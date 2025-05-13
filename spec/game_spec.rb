@@ -72,8 +72,6 @@ RSpec.describe Game do
       it 'returns false if the piece cannot legally move to the destination cell' do
         from_position = [6, 4]
         to_position = [3, 4]
-        mock_piece = double("Piece")
-        allow(mock_piece).to receive(:color).and_return(:white)
 
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
@@ -108,8 +106,6 @@ RSpec.describe Game do
       it 'returns false for a diagonal pawn move when not capturing' do
         from_position = [6, 4]
         to_position = [5, 3]
-        mock_piece = double("Piece")
-        allow(mock_piece).to receive(:color).and_return(:white)
 
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
@@ -120,9 +116,7 @@ RSpec.describe Game do
       it 'returns false if a pawn tries to move backward' do
         from_position = [6, 4]
         to_position = [7, 4]
-        mock_piece = double("Piece")
-        allow(mock_piece).to receive(:color).and_return(:white)
-
+\
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
