@@ -45,12 +45,12 @@
 - [x] Piece movement logic
 - [x] Prevent capturing your own piece
 - [x] Replace a captured piece with the moving piece
-- [ ] Detect & block moving through other pieces (~~rooks~~, ~~bishops~~, queens)
+- [x] Detect & block moving through other pieces (~~rooks~~, ~~bishops~~, ~~queens~~)
 - [ ] Loop through turns until game ends
+- [ ] Allow manual exit
 - [ ] Display board on each turn
 - [ ] Show current player's turn
 - [ ] Switch players
-- [ ] Allow manual exit
 
 ## Stage 5: Check & Checkmate
 - [ ] Detect check

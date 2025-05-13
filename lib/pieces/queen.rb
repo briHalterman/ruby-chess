@@ -10,10 +10,21 @@ class Queen < Piece
     row_delta = (to_position[0] - from_position[0]).abs
     column_delta = (to_position[1] - from_position[1]).abs
 
-    return true if row_delta == 0 && column_delta > 0
-    return true if column_delta == 0 && row_delta > 0
-    return true if row_delta == column_delta
+    return false if row_delta != 0 && column_delta != 0 && column_delta != 0 && row_delta != column_delta
 
-    false
+    row_step = to_position[0] <=> from_position[0]
+    column_step = to_position[1] <=> from_position[1]
+
+    current_row, current_column = from_position
+
+    loop do
+      current_row += row_step
+      current_column += column_step
+      break if [current_row, current_column] == to_position
+
+      return false unless board.piece_at([current_row, current_column]).nil?
+    end
+
+    true
   end
 end
