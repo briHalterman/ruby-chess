@@ -68,4 +68,14 @@ class Game
 
     true
   end
+
+  def play
+    until game_over?
+      play_turn
+    end
+  end
+
+  def game_over?
+    false
+  end
 end

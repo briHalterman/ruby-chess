@@ -314,4 +314,17 @@ RSpec.describe Game do
       game.attempt_move("e2 e7")
     end
   end
+
+  describe '#play' do
+    it 'calls play_turn repeatedly until the game is over' do
+      game = Game.new
+
+      allow(game).to receive(:play_turn)
+      allow(game).to receive(:game_over?).and_return(false, false, true)
+
+      game.play
+
+      expect(game).to have_received(:play_turn).exactly(2).times
+    end
+  end
 end
