@@ -38,12 +38,12 @@
 - [x] Print welcome message and instructions
 - [x] Validate move input
 - [x] Handle invalid square reference
+- [x] Ensure source square has a piece
+- [ ] Ensure piece belongs to current player
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
 - [ ] Prevent moving to the same square
-- [ ] Ensure source square has a piece
-- [ ] Ensure piece belongs to current player
 - [ ] Ensure destination is a legal move
 - [ ] Move piece if valid, re-prompt is invalid
 - [ ] Switch players

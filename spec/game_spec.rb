@@ -52,5 +52,10 @@ RSpec.describe Game do
       expect(game.valid_input_format?("a0 b9")).to be false
       expect(game.valid_input_format?("h9 h2")).to be false
     end
+
+    it 'returns false if the source square has no piece' do
+      allow(game.board).to receive(:piece_at).with([5, 4]).and_return(nil)
+      expect(game.valid_input_format?("e3 e4")).to be false
+    end
   end
 end

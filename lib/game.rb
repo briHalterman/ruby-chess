@@ -30,9 +30,21 @@ class Game
     attempt_move(move)
   end
 
+  def parse_position(cell)
+    column = cell[0].ord - 'a'.ord
+    row = 8 - cell[1].to_i
+    [row, column]
+  end
+
   def valid_input_format?(input)
     cells = input.split(" ")
     return false unless cells.length == 2
-    !!(input =~ /\A[a-h][1-8] [a-h][1-8]\z/)
+    return false unless input =~ /\A[a-h][1-8] [a-h][1-8]\z/
+
+    from, _to = cells
+    from_position = parse_position(from)
+    return false if board.piece_at(from_position).nil?
+
+    true
   end
 end
