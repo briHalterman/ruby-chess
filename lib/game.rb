@@ -47,6 +47,9 @@ class Game
     return false if piece.nil?
     return false unless piece.color == current_player.color
 
+    to_position = parse_position(_to)
+    return false unless piece.valid_move?(from_position, to_position, board)
+
     true
   end
 end

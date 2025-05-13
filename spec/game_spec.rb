@@ -40,9 +40,13 @@ RSpec.describe Game do
   describe '#valid_input_format?' do
     it 'returns true for valid format like "e2 e4"' do
       mock_piece = double("Piece", color: :white)
-      allow(game.board).to receive(:piece_at).with([6, 4]).and_return(mock_piece)
+      from_position = [6, 4] # e2
+      to_position = [4, 4]   # e4
+
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
       allow(game).to receive(:current_player).and_return(double("Player", color: :white))
-      
+      allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
       expect(game.valid_input_format?("e2 e4")).to be true
     end
 
@@ -68,6 +72,20 @@ RSpec.describe Game do
       allow(game).to receive(:current_player).and_return(double("Player", color: :white))
 
       expect(game.valid_input_format?("e3 e4")).to be false
+    end
+  end
+
+  describe '#valid_move?' do
+    it 'returns true if the piece can legally move to the destination cell' do
+      from_position = [6, 4]
+      to_position = [5, 4]
+      mock_piece = double("Piece", color: :white)
+
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+      allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+      expect(game.valid_input_format?("e2 e3")).to be true
     end
   end
 end
