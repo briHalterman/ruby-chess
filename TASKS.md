@@ -30,7 +30,12 @@
 - [x] Board Integration
 
 ## Stage 4: Game Logic
-- [ ]
+- [ ] Control flow
+- [ ] Initialize board and players
+- [ ] Display the board
+- [ ] Handle turn-taking
+- [ ] Move validation
+- [ ] End conditions
 
 ## Stage 5: Check & Checkmate
 - [ ]
