@@ -95,8 +95,7 @@ RSpec.describe Game do
       it 'returns true if the piece can legally move to the destination cell' do
         from_position = [6, 4]
         to_position = [5, 4]
-        mock_piece = double("Piece", color: :white)
-
+\
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
 
@@ -209,7 +208,7 @@ RSpec.describe Game do
         expect(game.valid_input_format?("d1 d4")).to be true
       end
 
-      it 'return true for a valid diagonal queen move' do
+      it 'returns true for a valid diagonal queen move' do
         from_position = [7, 3]
         to_position = [4, 6]
         queen = double("Queen", color: :white)
@@ -229,6 +228,30 @@ RSpec.describe Game do
         allow(queen).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
         expect(game.valid_input_format?("d1 f2")).to be false
+      end
+    end
+
+    context 'when piece is a king' do
+      it 'returns true for a valid king move' do
+        from_position = [7, 4]
+        to_position = [6, 4]
+
+        king = double("King", color: :white)
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(king)
+        allow(king).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+        expect(game.valid_input_format?("e1 e2")).to be true
+      end
+
+      it 'returns false for an invalid king move' do
+        from_position = [7, 4]
+        to_position = [5, 4]
+
+        king = double("King", color: :white)
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(king)
+        allow(king).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
+
+        expect(game.valid_input_format?("e1 e3")).to be false
       end
     end
   end
