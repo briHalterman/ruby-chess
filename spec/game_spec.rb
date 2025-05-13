@@ -342,4 +342,11 @@ RSpec.describe Game do
       expect(game).to have_received(:play_turn).exactly(2).times
     end
   end
+
+  describe '#switch_player' do
+    it 'switches from white to black' do
+      game = Game.new
+      expect { game.send(:switch_player) }.to change { game.current_player.color }.from(:white).to(:black)
+    end
+  end
 end

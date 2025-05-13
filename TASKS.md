@@ -49,8 +49,8 @@
 - [x] Loop through turns until game ends
 - [x] Allow manual exit
 - [x] Display board on each turn
-- [ ] Show current player's turn
-- [ ] Switch players
+- [x] Show current player's turn
+- [x] Switch players
 
 ## Stage 5: Check & Checkmate
 - [ ] Detect check

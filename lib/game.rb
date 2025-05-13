@@ -43,9 +43,11 @@ class Game
 
   def play_turn
     display_board
+    puts "#{current_player.color.to_s.capitalize}, your move:"
     move = current_player.get_move
     exit if move.downcase == 'exit'
     attempt_move(move)
+    switch_player
   end
 
   def parse_position(cell)
@@ -75,6 +77,10 @@ class Game
     until game_over?
       play_turn
     end
+  end
+
+  def switch_player
+    @current_player = current_player == white_player ? black_player : white_player
   end
 
   def game_over?
