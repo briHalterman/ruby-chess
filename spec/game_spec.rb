@@ -38,13 +38,18 @@ RSpec.describe Game do
   end
 
   describe '#valid_input_format?' do
+    let(:mock_piece) { double("Piece", color: :white) }
+    let(:current_player) { double("Player", color: :white) }
+
+    before do
+      allow(game).to receive(:current_player).and_return(current_player)
+    end
+
     it 'returns true for valid format like "e2 e4"' do
-      mock_piece = double("Piece", color: :white)
-      from_position = [6, 4] # e2
-      to_position = [4, 4]   # e4
+      from_position = [6, 4]
+      to_position = [4, 4]
 
       allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
       allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
 
       expect(game.valid_input_format?("e2 e4")).to be true
@@ -69,7 +74,6 @@ RSpec.describe Game do
     it 'returns false if the piece does not belong to the current player' do
       mock_piece = double("Piece", color: :black)
       allow(game.board).to receive(:piece_at).with([5, 4]).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
 
       expect(game.valid_input_format?("e3 e4")).to be false
     end
@@ -81,7 +85,6 @@ RSpec.describe Game do
       allow(mock_piece).to receive(:color).and_return(:white)
 
       allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
       allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
       expect(game.valid_input_format?("e2 e5")).to be false
@@ -93,7 +96,6 @@ RSpec.describe Game do
       mock_piece = double("Piece", color: :white)
 
       allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
       allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
 
       expect(game.valid_input_format?("e2 e3")).to be true
@@ -106,20 +108,18 @@ RSpec.describe Game do
       allow(mock_piece).to receive(:color).and_return(:white)
 
       allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
       allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
       expect(game.valid_input_format?("e2 d3")).to be false
     end
 
-    it 'returns false if a param tries to move backward' do
+    it 'returns false if a pawn tries to move backward' do
       from_position = [6, 4]
       to_position = [7, 4]
       mock_piece = double("Piece")
       allow(mock_piece).to receive(:color).and_return(:white)
 
       allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
       allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
       expect(game.valid_input_format?("e2 e1")).to be false
