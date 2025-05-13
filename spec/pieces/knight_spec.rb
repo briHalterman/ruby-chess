@@ -3,8 +3,8 @@ require 'spec_helper'
 require_relative '../../lib/pieces/knight'
 
 RSpec.describe Knight do
-  let(:white_knight) { Knight.new(:white, [1, 0]) }
-  let(:black_knight) { Knight.new(:black, [6, 0]) }
+  let(:white_knight) { Knight.new(:white, [1, 1]) }
+  let(:black_knight) { Knight.new(:black, [6, 1]) }
 
   describe '#symbol' do
     it 'returns ♘ for white knights' do
