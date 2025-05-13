@@ -1,4 +1,10 @@
 # lib/board.rb
+require_relative 'pieces/pawn'
+require_relative 'pieces/rook'
+require_relative 'pieces/knight'
+require_relative 'pieces/bishop'
+require_relative 'pieces/queen'
+require_relative 'pieces/king'
 class Board
   attr_reader :grid
 
@@ -38,12 +44,19 @@ class Board
   end
 
   def place_major_pieces(color, row)
-    pieces = [
-      :rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook
-    ]
+    piece_classes = {
+      rook: Rook,
+      knight: Knight,
+      bishop: Bishop,
+      queen: Queen,
+      king: King
+    }
 
-    pieces.each_with_index do |piece, column|
-      place_piece(:"#{color}_#{piece}", [row, column])
+    order = [:rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook]
+
+    order.each_with_index do |piece, column|
+      klass = piece_classes[piece]
+      place_piece(klass.new(color, [row, column]), [row, column])
     end
   end
 

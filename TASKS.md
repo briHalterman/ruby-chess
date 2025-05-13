@@ -27,7 +27,7 @@
 - [x] Bishop subclass
 - [x] Queen subclass
 - [x] King subclass
-- [ ] Board Integration
+- [x] Board Integration
 
 ## Stage 4: Game Logic
 - [ ]
