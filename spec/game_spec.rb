@@ -80,7 +80,7 @@ RSpec.describe Game do
       end
     end
 
-    context 'when the piece is a pawn do' do
+    context 'when the piece is a pawn' do
       it 'returns true for valid format like "e2 e4"' do
         from_position = [6, 4]
         to_position = [4, 4]
@@ -116,7 +116,7 @@ RSpec.describe Game do
       it 'returns false if a pawn tries to move backward' do
         from_position = [6, 4]
         to_position = [7, 4]
-\
+
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
 
@@ -148,7 +148,9 @@ RSpec.describe Game do
       end
     end
 
-    context 'when the piece is a rook' do
+    context 'when the piece is a knight' do
+      let(:knight) { double("Knight", color: :white) }
+
       it 'returns true for a valid knight move' do
         from_position = [7, 6]
         to_position = [5, 5]
@@ -158,6 +160,16 @@ RSpec.describe Game do
         allow(knight).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
 
         expect(game.valid_input_format?("g1 f3")).to be true
+      end
+
+      it 'returns false for an invalid knight move' do
+        from_position = [7, 6]
+        to_position = [6, 6]
+
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(knight)
+        allow(knight).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
+
+        expect(game.valid_input_format?("g1 g2")).to be false
       end
     end
   end
