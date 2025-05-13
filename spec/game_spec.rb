@@ -298,5 +298,20 @@ RSpec.describe Game do
 
       game.attempt_move(input)
     end
+
+    it 'replaces an opponent\'s piece with the moving piece when captured' do
+      from_position = [6, 4]
+      to_position = [1, 4]
+      moving_piece = double("Piece", color: :white)
+      opponent_piece = double("Piece", color: :black)
+
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(moving_piece)
+      allow(game.board).to receive(:piece_at).with(to_position).and_return(opponent_piece)
+      allow(moving_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+
+      expect(game.board).to receive(:move_piece).with(from_position, to_position)
+      game.attempt_move("e2 e7")
+    end
   end
 end

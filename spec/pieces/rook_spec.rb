@@ -19,6 +19,11 @@ RSpec.describe Rook do
 
   describe '#valid_move?' do
     let(:rook) { Rook.new(:white, [0, 0]) }
+    let(:board) { double("Board") }
+
+    before do
+      allow(board).to receive(:piece_at).and_return(nil)
+    end
 
     it 'returns true for a vertical move' do
       expect(rook.valid_move?([0, 0], [5, 0], board)).to be true
@@ -30,6 +35,13 @@ RSpec.describe Rook do
 
     it 'returns false if move does not change row or column' do
       expect(rook.valid_move?([0, 0], [0, 0], board)).to be false
+    end
+
+    it 'returns false if there is a piece blocking the path vertically' do
+      allow(board).to receive(:piece_at).with([1, 0]).and_return(double("Piece"))
+      allow(board).to receive(:piece_at).with([2, 0]).and_return(nil)
+
+      expect(rook.valid_move?([0, 0], [2, 0], board)).to be false
     end
   end
 end

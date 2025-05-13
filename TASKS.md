@@ -44,8 +44,8 @@
 - [x] Move piece if valid, re-prompt is invalid
 - [x] Piece movement logic
 - [x] Prevent capturing your own piece
-- [ ] Replace a captured piece with the moving piece
-- [ ] Detect & block moving through other pieces (rooks, bishops, queens)
+- [x] Replace a captured piece with the moving piece
+- [ ] Detect & block moving through other pieces (~~rooks~~, bishops, queens)
 - [ ] Loop through turns until game ends
 - [ ] Display board on each turn
 - [ ] Show current player's turn
