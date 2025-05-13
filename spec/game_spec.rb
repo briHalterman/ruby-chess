@@ -147,5 +147,18 @@ RSpec.describe Game do
         expect(game.valid_input_format?("h1 g2")).to be false
       end
     end
+
+    context 'when the piece is a rook' do
+      it 'returns true for a valid knight move' do
+        from_position = [7, 6]
+        to_position = [5, 5]
+
+        knight = double("Knight", color: :white)
+        allow(game.board).to receive(:piece_at).with(from_position).and_return(knight)
+        allow(knight).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+        expect(game.valid_input_format?("g1 f3")).to be true
+      end
+    end
   end
 end
