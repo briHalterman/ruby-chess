@@ -124,5 +124,16 @@ RSpec.describe Game do
 
       expect(game.valid_input_format?("e2 e1")).to be false
     end
+
+    it 'returns true for a valid rook move' do
+      from_position = [7, 7]
+      to_position = [4, 7]
+
+      rook = double("Rook", color: :white)
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(rook)
+      allow(rook).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+
+      expect(game.valid_input_format?("h1 h4")).to be true
+    end
   end
 end
