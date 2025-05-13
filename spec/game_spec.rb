@@ -113,5 +113,18 @@ RSpec.describe Game do
 
       expect(game.valid_input_format?("e2 d3")).to be false
     end
+
+    it 'returns false if a param tries to move backward' do
+      from_position = [6, 4]
+      to_position = [7, 4]
+      mock_piece = double("Piece")
+      allow(mock_piece).to receive(:color).and_return(:white)
+
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+      allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(false)
+
+      expect(game.valid_input_format?("e2 e1")).to be false
+    end
   end
 end
