@@ -10,4 +10,11 @@ RSpec.describe Game do
       expect(game.board).to be_a(Board)
     end
   end
+
+  describe '#display_board' do
+    it 'prints the board to the terminal' do
+      game = Game.new
+      expect { game.display_board }.to output(/8 \| ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜/).to_stdout
+    end
+  end
 end
