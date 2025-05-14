@@ -7,9 +7,15 @@ class Pawn < Piece
   end
 
   def valid_move?(from_position, to_position, board)
-    # Only vertical moves
+    direction = color == :white ? 1 : -1
+
     row_delta = to_position[0] - from_position[0]
     column_delta = (to_position[1] - from_position[1]).abs
+
+    if row_delta == direction && column_delta == 1
+      target = board.piece_at(to_position)
+      return target && target.color != color
+    end
 
     # Pawns don't move sideways
     return false unless column_delta == 0

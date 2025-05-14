@@ -31,5 +31,12 @@ RSpec.describe Pawn do
     it 'cannot move sideways' do
       expect(pawn.valid_move?([1, 4], [1, 5], board)).to be false
     end
+
+    it 'can move diagonally if capturing an opponent piece' do
+      target_piece = instance_double("Piece", color: :black)
+      allow(board).to receive(:piece_at).with([2, 5]).and_return(target_piece)
+
+      expect(pawn.valid_move?([1, 4], [2, 5], board)).to be true
+    end
   end
 end
