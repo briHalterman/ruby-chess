@@ -349,4 +349,35 @@ RSpec.describe Game do
       expect { game.send(:switch_player) }.to change { game.current_player.color }.from(:white).to(:black)
     end
   end
+
+  describe '#in_check?' do
+    it 'returns true when the white king is under attack' do
+      game = Game.new
+      board = game.board
+
+      # Clear board and set up just the white king and black rook
+      board.clear!
+      white_king = King.new(:white, [0, 4])
+      black_rook = Rook.new(:black, [1, 4])
+
+      board.place_piece(white_king, [0, 4])
+      board.place_piece(black_rook, [1, 4])
+
+      expect(game.in_check?(:white)).to be true
+    end
+
+    it 'returns false when the king is safe' do
+      game = Game.new
+      board = game.board
+
+      board.clear!
+      white_king = King.new(:white, [0, 4])
+      black_rook = Rook.new(:black, [1, 5]) # not attacking king
+
+      board.place_piece(white_king, [0, 4])
+      board.place_piece(black_rook, [1, 5])
+
+      expect(game.in_check?(:white)).to be false
+    end
+  end
 end

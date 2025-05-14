@@ -73,4 +73,9 @@ class Board
     rows << "    a b c d e f g h"
     rows.join("\n")
   end
+
+
+  def clear!
+    @grid = Array.new(8) { Array.new(8, nil) }
+  end
 end

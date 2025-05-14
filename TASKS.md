@@ -53,7 +53,7 @@
 - [x] Switch players
 
 ## Stage 5: Check & Checkmate
-- [ ] Detect check
+- [x] Detect check
 - [ ] Detect checkmate
 - [ ] Declare winner
 

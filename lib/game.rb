@@ -83,6 +83,32 @@ class Game
     @current_player = current_player == white_player ? black_player : white_player
   end
 
+  def in_check?(color)
+    king_position = nil
+
+    # Find the king's position
+    board.grid.each_with_index do |row, row_index|
+      row.each_with_index do |piece, column_index|
+        if piece.is_a?(King) && piece.color == color
+          king_position = [row_index, column_index]
+          break
+        end
+      end
+    end
+
+    return false if king_position.nil?
+
+    # Look for threats from the opposing color
+    board.grid.each_with_index do |row, row_index|
+      row.each_with_index do |piece, column_index|
+        next if piece.nil? || piece.color == color
+        return true if piece.valid_move?([row_index, column_index], king_position, board)
+      end
+    end
+
+    false
+  end
+
   def game_over?
     false
   end
