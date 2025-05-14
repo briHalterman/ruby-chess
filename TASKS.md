@@ -55,7 +55,7 @@
 ## Stage 5: Check & Checkmate
 - [x] Detect check
 - [x] Prevent self-check
-- [ ] Detect checkmate
+- [x] Detect checkmate
 - [ ] Declare winner
 
 ## Stage 6: Save/Load

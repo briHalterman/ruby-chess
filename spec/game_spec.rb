@@ -419,4 +419,24 @@ RSpec.describe Game do
       expect(game.in_check?(:white)).to be false
     end
   end
+
+  describe '#checkmate?' do
+    it 'returns true when the current player is in checkmate' do
+      game = Game.new
+      board = game.board
+      board.clear!
+
+      white_king = King.new(:white, [7, 7])
+      black_rook1 = Rook.new(:black, [7, 6])
+      black_rook2 = Rook.new(:black, [6, 7])
+
+      board.place_piece(white_king, [7, 7])
+      board.place_piece(black_rook1, [6, 6])
+      board.place_piece(black_rook2, [6, 7])
+
+      allow(game).to receive(:current_player).and_return(game.white_player)
+
+      expect(game.checkmate?(:white)).to be true
+    end
+  end
 end

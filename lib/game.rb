@@ -147,6 +147,34 @@ class Game
     game
   end
 
+  def checkmate?(color)
+    return false unless in_check?(color)
+
+    board.grid.each_with_index do |row, row_index|
+      row.each_with_index do |piece, column_index|
+        next if piece.nil? || piece.color != color
+
+        from_position = [row_index, column_index]
+
+        (0..7).each do |to_row|
+          (0..7).each do |to_column|
+            to_position = [to_row, to_column]
+
+            next unless piece.valid_move?(from_position, to_position, board)
+
+            dup_board = deep_dup_board(board)
+            dup_board.move_piece(from_position, to_position)
+
+            test_game = Game.new_with_board(dup_board)
+            return false if !test_game.in_check?(color)
+          end
+        end
+      end
+    end
+
+    true
+  end
+
   def game_over?
     false
   end
