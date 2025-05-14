@@ -428,6 +428,21 @@ RSpec.describe Game do
     end
   end
 
+  describe '#deep_dup_board' do
+    it 'returns a new board object with duplicated pieces' do
+      original = Board.new
+      original.place_piece(Pawn.new(:white, [1, 0]), [1, 0])
+      game = Game.new_with_board(original)
+
+      duped = game.deep_dup_board(original)
+
+      expect(duped).to be_a(Board)
+      expect(duped).not_to equal(original)
+      expect(duped.piece_at([1, 0])).to be_a(Pawn)
+      expect(duped.piece_at([1, 0])).not_to equal(original.piece_at([1, 0]))
+    end
+  end
+
   describe '.new_with_board' do
     it 'creates a game instance with the provided board' do
       board = Board.new
