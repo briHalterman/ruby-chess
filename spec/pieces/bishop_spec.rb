@@ -19,10 +19,12 @@ RSpec.describe Bishop do
   end
 
   describe '#valid_move?' do
-    it 'returns true for a valid diagonal move' do
-      bishop = Bishop.new(:white, [0, 2])
-      board = double("Board")
 
+  before do
+    allow(board).to receive(:piece_at).and_return(nil)
+  end
+
+  it 'returns true for a valid diagonal move' do
       allow(board).to receive(:piece_at).with([1, 3]).and_return(nil)
       allow(board).to receive(:piece_at).with([2, 4]).and_return(nil)
 
@@ -38,9 +40,6 @@ RSpec.describe Bishop do
     end
 
     it 'returns false if there is a piece blocking the diagonal path' do
-      bishop = Bishop.new(:white, [0, 2])
-      board = double("Board")
-
       allow(board).to receive(:piece_at).with([1, 3]).and_return(double("Piece"))
       allow(board).to receive(:piece_at).with([2, 4]).and_return(nil)
 

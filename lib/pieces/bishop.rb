@@ -1,4 +1,4 @@
-# lib/pieces/pawn.rb
+# lib/pieces/bishop.rb
 require_relative 'piece'
 
 class Bishop < Piece
