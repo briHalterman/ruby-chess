@@ -1,4 +1,4 @@
-# lib/pieces/pawn.rb
+# lib/pieces/queen.rb
 require_relative 'piece'
 
 class Queen < Piece
@@ -12,7 +12,9 @@ class Queen < Piece
     row_delta = (to_position[0] - from_position[0]).abs
     column_delta = (to_position[1] - from_position[1]).abs
 
-    return false if row_delta != 0 && column_delta != 0 && column_delta != 0 && row_delta != column_delta
+    unless row_delta == 0 || column_delta == 0 || row_delta == column_delta
+      return false
+    end
 
     row_step = to_position[0] <=> from_position[0]
     column_step = to_position[1] <=> from_position[1]
