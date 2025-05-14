@@ -544,6 +544,25 @@ RSpec.describe Game do
       expect(loaded_game.white_player.color).to eq(:white)
       expect(loaded_game.black_player.color).to eq(:black)
     end
+
+    it 'resumes play from a saved file' do
+      board = Board.new
+      game = Game.new_with_board(board)
+      file_path = 'spec/tmp/resume_test.yaml'
+
+      game.save_game(file_path)
+      loaded_game = Game.load_game(file_path)
+
+      allow(loaded_game).to receive(:display_board)
+      allow(loaded_game.current_player).to receive(:get_move).and_return('e2 e4')
+      allow(loaded_game).to receive(:attempt_move)
+      allow(loaded_game).to receive(:switch_player)
+
+      expect(loaded_game).to be_a(Game)
+      expect(loaded_game.board).to be_a(Board)
+
+      expect { loaded_game.play_turn }.to_not raise_error
+    end
   end
 
   # Helper Method

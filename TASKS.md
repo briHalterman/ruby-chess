@@ -63,13 +63,13 @@
 - [x] Write game state to a file
 - [x] Load and deserialize saved game
 - [x] Make saving and loading accessible to players
-- [ ] Resume play from saved state
+- [x] Resume play from saved state
 
 ## Stage 7: Final Touches
 - [x] main.rb
+- [ ] Manual playtesting
 - [ ] Improve welcome message
 - [ ] Error messages for input validation
 - [ ] Improve board rendering
 - [ ] Polish README and usage instructions
-- [ ] Manual playtesting
 - [ ] Rubocop
