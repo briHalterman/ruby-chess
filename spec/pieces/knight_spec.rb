@@ -35,5 +35,9 @@ RSpec.describe Knight do
     it 'returns false for a diagonal move' do
       expect(knight.valid_move?([7, 1], [6, 2], board)).to be false
     end
+
+    it 'returns false for a move to the same square' do
+      expect(knight.valid_move?([7, 1], [7, 1], board)).to be false
+    end
   end
 end
