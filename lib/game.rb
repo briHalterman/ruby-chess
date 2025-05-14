@@ -176,6 +176,14 @@ class Game
   end
 
   def game_over?
-    false
+    if checkmate?(:white)
+      puts "Checkmate! Black wins!"
+      true
+    elsif checkmate?(:black)
+      puts "Checkmate! White wins!"
+      true
+    else
+      false
+    end
   end
 end

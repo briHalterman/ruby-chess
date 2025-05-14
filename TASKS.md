@@ -56,7 +56,7 @@
 - [x] Detect check
 - [x] Prevent self-check
 - [x] Detect checkmate
-- [ ] Declare winner
+- [x] Declare winner
 
 ## Stage 6: Save/Load
 - [ ] Serialize game state
