@@ -52,6 +52,14 @@ RSpec.describe Game do
     end
   end
 
+  describe '#parse_position' do
+    it 'converts algebraic notation to board coordinates' do
+      expect(game.parse_position("a8")).to eq([0, 0])
+      expect(game.parse_position("h1")).to eq([7, 7])
+      expect(game.parse_position("e2")).to eq([6, 4])
+    end
+  end
+
   describe '#valid_input_format?' do
     let(:mock_piece) { double("Piece", color: :white) }
     let(:current_player) { double("Player", color: :white) }
@@ -110,7 +118,7 @@ RSpec.describe Game do
       it 'returns true if the piece can legally move to the destination cell' do
         from_position = [6, 4]
         to_position = [5, 4]
-\
+
         allow(game.board).to receive(:piece_at).with(from_position).and_return(mock_piece)
         allow(mock_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
 
