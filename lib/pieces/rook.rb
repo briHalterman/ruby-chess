@@ -18,7 +18,6 @@ class Rook < Piece
     row_step = to_row <=> from_row
     column_step = to_column <=> from_column
 
-
     #Start one square forward
     current_row = from_row + row_step
     current_column = from_column + column_step
@@ -29,7 +28,7 @@ class Rook < Piece
       current_row += row_step
       current_column += column_step
     end
-    
+
     true
   end
 end

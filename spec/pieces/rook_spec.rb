@@ -29,6 +29,10 @@ RSpec.describe Rook do
       expect(rook.valid_move?([0, 0], [5, 0], board)).to be true
     end
 
+    it 'returns true for a horizontal move' do
+      expect(rook.valid_move?([0, 0], [0, 5], board)).to be true
+    end
+
     it 'returns false for a diagonal move' do
       expect(rook.valid_move?([0, 0], [3, 3], board)).to be false
     end
@@ -42,6 +46,13 @@ RSpec.describe Rook do
       allow(board).to receive(:piece_at).with([2, 0]).and_return(nil)
 
       expect(rook.valid_move?([0, 0], [2, 0], board)).to be false
+    end
+
+    it 'returns false if there is a piece blocking the path horizontally' do
+      allow(board).to receive(:piece_at).with([0, 1]).and_return(double("Piece"))
+      allow(board).to receive(:piece_at).with([0, 2]).and_return(nil)
+
+      expect(rook.valid_move?([0, 0], [0, 2], board)).to be false
     end
   end
 end
