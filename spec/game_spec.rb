@@ -74,18 +74,35 @@ RSpec.describe Game do
       game.play_turn
     end
 
-    it 'saves the game and exits when player types "save"' do
+    # OBSOLETE
+    #   it 'saves the game and exits when player types "save"' do
+    #     game = Game.new
+    #     file_path = 'spec/tmp/test_save.yaml'
+
+    #     allow(game).to receive(:display_board)
+    #     allow(game.current_player).to receive(:get_move).and_return('save')
+    #     allow(game).to receive(:gets).and_return('test_save.yaml')
+
+    #     expect(game).to receive(:save_game).with("saves/test_save.yaml")
+    #     expect { game.play_turn }.to raise_error(SystemExit)
+    #   end
+    # end
+
+    it 'saves the game and exits when player“ types "save"' do
       game = Game.new
-      file_path = 'spec/tmp/test_save.yaml'
 
       allow(game).to receive(:display_board)
       allow(game.current_player).to receive(:get_move).and_return('save')
-      allow(game).to receive(:gets).and_return('test_save.yaml')
 
-      expect(game).to receive(:save_game).with("saves/test_save.yaml")
+      fixed_time = Time.new(2024, 12, 12, 19, 30, 00)
+      allow(Time).to receive(:now).and_return(fixed_time)
+
+      expected_path = 'saves/20241212_193000.yaml'
+      expect(game).to receive(:save_game).with(expected_path)
       expect { game.play_turn }.to raise_error(SystemExit)
     end
   end
+
 
   describe '#switch_player' do
     it 'switches from white to black' do

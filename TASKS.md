@@ -62,7 +62,7 @@
 - [x] Serialize game state
 - [x] Write game state to a file
 - [x] Load and deserialize saved game
-- [ ] Make saving accessible to players
+- [ ] Make saving and loading accessible to players
 - [ ] Resume play from saved state
 
 ## Stage 7: Final Touches

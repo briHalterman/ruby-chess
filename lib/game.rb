@@ -40,8 +40,10 @@ class Game
     when 'exit'
       exit
     when 'save'
-      save_game('saves/test_save.yaml')
-      puts "Game saved to saves/test_save.yaml"
+      timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+      file_path = "saves/#{timestamp}.yaml"
+      save_game(file_path)
+      puts "Game saved to #{file_path}"
       exit
     else
       attempt_move(move)
