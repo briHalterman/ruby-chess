@@ -34,5 +34,9 @@ RSpec.describe King do
     it 'returns false for L-shaped moves' do
       expect(king.valid_move?([4, 4], [6, 5], board)).to be false
     end
+
+    it 'returns false for a move to the same square' do
+      expect(king.valid_move?([4, 4], [4, 4], board)).to be false
+    end
   end
 end
