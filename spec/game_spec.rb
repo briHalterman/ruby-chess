@@ -428,6 +428,19 @@ RSpec.describe Game do
     end
   end
 
+  describe '.new_with_board' do
+    it 'creates a game instance with the provided board' do
+      board = Board.new
+      game = Game.new_with_board(board)
+
+      expect(game).to be_a(Game)
+      expect(game.board).to eq(board)
+      expect(game.white_player.color).to eq(:white)
+      expect(game.black_player.color).to eq(:black)
+      expect(game.current_player).to eq(game.white_player)
+    end
+  end
+
   describe '#checkmate?' do
     it 'returns true when the current player is in checkmate' do
       game = Game.new
