@@ -6,6 +6,11 @@ require_relative 'pieces/bishop'
 require_relative 'pieces/queen'
 require_relative 'pieces/king'
 class Board
+  UNICODE_PIECES = {
+    white_pawn: '♙', white_rook: '♖', white_knight: '♘', white_bishop: '♗', white_queen: '♕', white_king: '♔',
+    black_pawn: '♟', black_rook: '♜', black_knight: '♞', black_bishop: '♝', black_queen: '♛', black_king: '♚'
+  }
+
   attr_reader :grid
 
   def initialize
@@ -23,11 +28,9 @@ class Board
   end
 
   def move_piece(current_position, new_position)
-    current_row, current_column = current_position
-    new_row, new_column = new_position
-
-    @grid[new_row][new_column] = @grid[current_row][current_column]
-    @grid[current_row][current_column] = nil
+    piece = piece_at(current_position)
+    place_piece(piece, new_position)
+    place_piece(nil, current_position)
   end
 
   def place_starting_pieces
@@ -60,11 +63,6 @@ class Board
     end
   end
 
-  UNICODE_PIECES = {
-    white_pawn: '♙', white_rook: '♖', white_knight: '♘', white_bishop: '♗', white_queen: '♕', white_king: '♔',
-    black_pawn: '♟', black_rook: '♜', black_knight: '♞', black_bishop: '♝', black_queen: '♛', black_king: '♚'
-  }
-
   def display_board
     rows = @grid.map.with_index.reverse_each.map do |row, index|
       pieces = row.map { |cell| cell&.symbol || ' ' }
@@ -74,7 +72,7 @@ class Board
     rows.join("\n")
   end
 
-
+  # Reset the board to an empty state
   def clear!
     @grid = Array.new(8) { Array.new(8, nil) }
   end
