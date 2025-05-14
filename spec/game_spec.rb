@@ -501,6 +501,22 @@ RSpec.describe Game do
     end
   end
 
+  describe '.load_game' do
+    it 'restores a game instance from a YAML file' do
+      board = Board.new
+      game = Game.new_with_board(board)
+      file_path = 'spec/tmp/load_test.yaml'
+
+      game.save_game(file_path)
+      loaded_game = Game.load_game(file_path)
+
+      expect(loaded_game).to be_a(Game)
+      expect(loaded_game.board).to be_a(Board)
+      expect(loaded_game.white_player.color).to eq(:white)
+      expect(loaded_game.black_player.color).to eq(:black)
+    end
+  end
+
   # Helper Method
   describe '#deep_dup_board' do
     it 'returns a new board object with duplicated pieces' do

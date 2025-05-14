@@ -186,6 +186,18 @@ class Game
     File.open(file_path, 'w') { |file| file.write(YAML.dump(self)) }
   end
 
+  def self.load_game(file_path)
+    YAML.safe_load(
+      File.read(file_path),
+      permitted_classes: [
+        Game, Board, Player,
+        Pawn, Rook, Knight, Bishop, Queen, King,
+        Symbol, Array, Hash
+      ],
+      aliases: true
+    )
+  end
+
   # Helper Method
   def deep_dup_board(original_board)
     new_board = Board.new
