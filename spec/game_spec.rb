@@ -475,6 +475,32 @@ RSpec.describe Game do
     end
   end
 
+  # Save and Load
+  describe '#save_game' do
+    it 'writes the game state to a YAML file' do
+      board = Board.new
+      board.place_starting_pieces
+      game = Game.new_with_board(board)
+
+      file_path = 'spec/tmp/save_test.yaml'
+      game.save_game(file_path)
+
+      expect(File).to exist(file_path)
+
+      yaml_data = YAML.safe_load(
+        File.read(file_path),
+        permitted_classes: [
+          Game, Board, Player,
+          Pawn, Rook, Knight, Bishop, Queen, King,
+          Symbol, Array, Hash
+        ],
+        aliases: true
+      )
+
+      expect(yaml_data).to be_a(Game)
+    end
+  end
+
   # Helper Method
   describe '#deep_dup_board' do
     it 'returns a new board object with duplicated pieces' do

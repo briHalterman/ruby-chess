@@ -1,6 +1,7 @@
 # lib/game.rb
 require_relative 'board'
 require_relative 'player'
+require 'yaml'
 
 class Game
   attr_reader :board, :current_player, :white_player, :black_player
@@ -178,6 +179,11 @@ class Game
     else
       false
     end
+  end
+
+  # Save and Load
+  def save_game(file_path)
+    File.open(file_path, 'w') { |file| file.write(YAML.dump(self)) }
   end
 
   # Helper Method
