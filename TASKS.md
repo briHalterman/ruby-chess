@@ -62,10 +62,11 @@
 - [x] Serialize game state
 - [x] Write game state to a file
 - [x] Load and deserialize saved game
-- [ ] Make saving and loading accessible to players
+- [x] Make saving and loading accessible to players
 - [ ] Resume play from saved state
 
 ## Stage 7: Final Touches
+- [x] main.rb
 - [ ] Improve welcome message
 - [ ] Error messages for input validation
 - [ ] Improve board rendering
