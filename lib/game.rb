@@ -35,10 +35,16 @@ class Game
         return
       end
 
+      if move_exposes_king?(from_position, to_position)
+        puts "You can't move into check"
+        return
+      end
+
       board.move_piece(from_position, to_position)
     else
       puts "Invalid move. Please try again."
     end
+
   end
 
   def play_turn
@@ -69,6 +75,8 @@ class Game
 
     to_position = parse_position(_to)
     return false unless piece.valid_move?(from_position, to_position, board)
+
+    return false if move_exposes_king?(from_position, to_position)
 
     true
   end
@@ -107,6 +115,36 @@ class Game
     end
 
     false
+  end
+
+  def move_exposes_king?(from_position, to_position)
+    dup_board = deep_dup_board(board)
+    dup_board.move_piece(from_position, to_position)
+    moved_piece = dup_board.piece_at(to_position)
+    moved_piece.position = to_position if moved_piece.respond_to?(:position)
+    Game.new_with_board(dup_board).in_check?(current_player.color)
+  end
+
+  def deep_dup_board(original_board)
+    new_board = Board.new
+    original_board.grid.each_with_index do |row, row_index|
+      row.each_with_index do |piece, column_index|
+        if piece
+          new_piece = piece.class.new(piece.color, [row_index, column_index])
+          new_board.grid[row_index][column_index] = new_piece
+        end
+      end
+    end
+    new_board
+  end
+
+  def self.new_with_board(board)
+    game = Game.allocate
+    game.instance_variable_set(:@board, board)
+    game.instance_variable_set(:@white_player, Player.new(:white))
+    game.instance_variable_set(:@black_player, Player.new(:black))
+    game.instance_variable_set(:@current_player, game.white_player)
+    game
   end
 
   def game_over?

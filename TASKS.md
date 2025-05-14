@@ -54,6 +54,7 @@
 
 ## Stage 5: Check & Checkmate
 - [x] Detect check
+- [x] Prevent self-check
 - [ ] Detect checkmate
 - [ ] Declare winner
 
@@ -64,7 +65,6 @@
 - [ ] Resume play from saved state
 
 ## Stage 7: Final Touches
-- [ ] Prevent self-check
 - [ ] Improve welcome message
 - [ ] Error messages for input validation
 - [ ] Improve board rendering

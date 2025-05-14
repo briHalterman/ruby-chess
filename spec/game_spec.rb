@@ -269,6 +269,44 @@ RSpec.describe Game do
         expect(game.valid_input_format?("e1 e3")).to be false
       end
     end
+
+    context 'self-check prevention' do
+      it 'returns false if a move would leave the king in check' do
+        game = Game.new_with_board(Board.new)
+        board = game.board
+        board.clear!
+
+        white_king = King.new(:white, [7, 4])
+        white_rook = Rook.new(:white, [7, 3])
+        black_rook = Rook.new(:black, [7, 0])
+
+        board.place_piece(white_king, [7, 4])
+        board.place_piece(white_rook, [7, 3])
+        board.place_piece(black_rook, [7, 0])
+
+        allow(game).to receive(:current_player).and_return(game.white_player)
+
+        expect(game.valid_input_format?("d1 d2")).to be false
+      end
+
+      it 'returns true if a move does not leave the king check' do
+        game = Game.new
+        board = game.board
+        board.clear!
+
+        white_king = King.new(:white, [7, 4])
+        white_rook = Rook.new(:white, [7, 3])
+        black_rook = Rook.new(:black, [6, 0])
+
+        board.place_piece(white_king, [7, 4])
+        board.place_piece(white_rook, [7, 3])
+        board.place_piece(black_rook, [6, 0])
+
+        allow(game).to receive(:current_player).and_return(game.white_player)
+
+        expect(game.valid_input_format?("d1 d2")).to be true
+      end
+    end
   end
 
   describe '#attempt_move' do
@@ -326,6 +364,7 @@ RSpec.describe Game do
       allow(game).to receive(:current_player).and_return(double("Player", color: :white))
 
       expect(game.board).to receive(:move_piece).with(from_position, to_position)
+      allow(game).to receive(:move_exposes_king?).and_return(false)
       game.attempt_move("e2 e7")
     end
   end
