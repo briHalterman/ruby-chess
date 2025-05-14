@@ -1,4 +1,4 @@
-# lib/pieces/pawn.rb
+# lib/pieces/knight.rb
 require_relative 'piece'
 
 class Knight < Piece
@@ -7,8 +7,8 @@ class Knight < Piece
   end
 
   def valid_move?(from_position, to_position, board)
-    row_delta = (to_position[1] - from_position[1]).abs
-    column_delta = (to_position[0] - from_position[0]).abs
+    row_delta = (to_position[0] - from_position[0]).abs
+    column_delta = (to_position[1] - from_position[1]).abs
 
     (row_delta == 2 && column_delta == 1) || (row_delta == 1 && column_delta == 2)
   end
