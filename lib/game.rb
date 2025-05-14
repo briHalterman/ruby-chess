@@ -34,10 +34,19 @@ class Game
   def play_turn
     display_board
     puts "#{current_player.color.to_s.capitalize}, your move:"
-    move = current_player.get_move
-    exit if move.downcase == 'exit'
-    attempt_move(move)
-    switch_player
+    move = current_player.get_move.downcase
+
+    case move
+    when 'exit'
+      exit
+    when 'save'
+      save_game('saves/test_save.yaml')
+      puts "Game saved to saves/test_save.yaml"
+      exit
+    else
+      attempt_move(move)
+      switch_player
+    end
   end
 
   def switch_player

@@ -73,6 +73,18 @@ RSpec.describe Game do
       expect(game).to receive(:display_board)
       game.play_turn
     end
+
+    it 'saves the game and exits when player types "save"' do
+      game = Game.new
+      file_path = 'spec/tmp/test_save.yaml'
+
+      allow(game).to receive(:display_board)
+      allow(game.current_player).to receive(:get_move).and_return('save')
+      allow(game).to receive(:gets).and_return('test_save.yaml')
+
+      expect(game).to receive(:save_game).with("saves/test_save.yaml")
+      expect { game.play_turn }.to raise_error(SystemExit)
+    end
   end
 
   describe '#switch_player' do

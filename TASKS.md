@@ -59,9 +59,10 @@
 - [x] Declare winner
 
 ## Stage 6: Save/Load
-- [ ] Serialize game state
-- [ ] Write game state to a file
-- [ ] Load and deserialize saved game
+- [x] Serialize game state
+- [x] Write game state to a file
+- [x] Load and deserialize saved game
+- [ ] Make saving accessible to players
 - [ ] Resume play from saved state
 
 ## Stage 7: Final Touches
