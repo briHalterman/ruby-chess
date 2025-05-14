@@ -14,7 +14,8 @@ class Pawn < Piece
 
     if row_delta == direction && column_delta == 1
       target = board.piece_at(to_position)
-      return target && target.color != color
+      return false unless target
+      return target.color != color
     end
 
     # Pawns don't move sideways

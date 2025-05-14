@@ -38,5 +38,11 @@ RSpec.describe Pawn do
 
       expect(pawn.valid_move?([1, 4], [2, 5], board)).to be true
     end
+
+    it 'cannot move diagonally if not capturing' do
+      allow(board).to receive(:piece_at).with([2, 5]).and_return(nil)
+
+      expect(pawn.valid_move?([1, 4], [2, 5], board)).to be false
+    end
   end
 end
