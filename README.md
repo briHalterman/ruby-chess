@@ -102,7 +102,7 @@ Subclasses for each type:
 - **Methods**
   - Handles main game loop
   - Toggles players
-  - Determines check/chackmate
+  - Determines check/checkmate
   - Ends game
 
 ## Player
