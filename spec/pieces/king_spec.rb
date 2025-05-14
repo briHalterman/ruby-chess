@@ -27,6 +27,10 @@ RSpec.describe King do
       expect(king.valid_move?([4, 4], [4, 5], board)).to be true
     end
 
+    it 'returns true for one square backward' do
+      expect(king.valid_move?([4, 4], [5, 4], board)).to be true
+    end
+
     it 'returns true for one square diagonal' do
       expect(king.valid_move?([4, 4], [5, 5], board)).to be true
     end
