@@ -5,6 +5,13 @@ require_relative '../lib/game'
 RSpec.describe Game do
   let(:game) { Game.new }
 
+  def setup_corner_checkmate(board)
+    board.clear!
+    board.place_piece(King.new(:white, [7, 7]), [7, 7])
+    board.place_piece(Rook.new(:black, [6, 6]), [6, 6])
+    board.place_piece(Rook.new(:black, [6, 7]), [6, 7])
+  end
+
   # Initialization
   describe "#initialize" do
     it 'initializes a board' do
@@ -418,16 +425,7 @@ RSpec.describe Game do
   describe '#checkmate?' do
     it 'returns true when the current player is in checkmate' do
       game = Game.new
-      board = game.board
-      board.clear!
-
-      white_king = King.new(:white, [7, 7])
-      black_rook1 = Rook.new(:black, [7, 6])
-      black_rook2 = Rook.new(:black, [6, 7])
-
-      board.place_piece(white_king, [7, 7])
-      board.place_piece(black_rook1, [6, 6])
-      board.place_piece(black_rook2, [6, 7])
+      setup_corner_checkmate(game.board)
 
       allow(game).to receive(:current_player).and_return(game.white_player)
 
@@ -469,16 +467,7 @@ RSpec.describe Game do
   describe '#game_over?' do
     it 'returns true when white is in checkmate' do
       game = Game.new
-      board = game.board
-      board.clear!
-
-      white_king = King.new(:white, [7, 7])
-      black_rook1 = Rook.new(:black, [7, 6])
-      black_rook2 = Rook.new(:black, [6, 7])
-
-      board.place_piece(white_king, [7, 7])
-      board.place_piece(black_rook1, [6, 6])
-      board.place_piece(black_rook2, [6, 7])
+      setup_corner_checkmate(game.board)
 
       allow(game).to receive(:current_player).and_return(game.white_player)
 
