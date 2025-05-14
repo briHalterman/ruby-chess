@@ -52,5 +52,9 @@ RSpec.describe Queen do
 
       expect(queen.valid_move?([0, 3], [3, 3], board)).to be false
     end
+
+    it 'returns false for a move to the same space' do
+      expect(queen.valid_move?([0, 3], [0, 3], board)).to be false
+    end
   end
 end

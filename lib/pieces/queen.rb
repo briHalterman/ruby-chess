@@ -7,6 +7,8 @@ class Queen < Piece
   end
 
   def valid_move?(from_position, to_position, board)
+    return false if from_position == to_position
+
     row_delta = (to_position[0] - from_position[0]).abs
     column_delta = (to_position[1] - from_position[1]).abs
 
