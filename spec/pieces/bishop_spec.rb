@@ -46,5 +46,9 @@ RSpec.describe Bishop do
 
       expect(bishop.valid_move?([0, 2], [2, 4], board)).to be false
     end
+
+    it 'returns false for an L-shaped move' do
+      expect(bishop.valid_move?([0, 2], [2, 3], board)).to be false
+    end
   end
 end
