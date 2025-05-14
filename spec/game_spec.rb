@@ -5,6 +5,7 @@ require_relative '../lib/game'
 RSpec.describe Game do
   let(:game) { Game.new }
 
+  # Initialization
   describe "#initialize" do
     it 'initializes a board' do
       expect(game.board).to be_a(Board)
@@ -16,15 +17,30 @@ RSpec.describe Game do
     end
   end
 
-  describe '#display_board' do
-    it 'prints the board to the terminal' do
-      expect { game.display_board }.to output(/8 \| ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜/).to_stdout
+  describe '.new_with_board' do
+    it 'creates a game instance with the provided board' do
+      board = Board.new
+      game = Game.new_with_board(board)
+
+      expect(game).to be_a(Game)
+      expect(game.board).to eq(board)
+      expect(game.white_player.color).to eq(:white)
+      expect(game.black_player.color).to eq(:black)
+      expect(game.current_player).to eq(game.white_player)
     end
   end
 
-  describe '#display_welcome_message' do
-    it 'prints a welcome message and instructions to the terminal' do
-      expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.q\., "e2 e4"\)/).to_stdout
+  #Main Game Loop
+  describe '#play' do
+    it 'calls play_turn repeatedly until the game is over' do
+      game = Game.new
+
+      allow(game).to receive(:play_turn)
+      allow(game).to receive(:game_over?).and_return(false, false, true)
+
+      game.play
+
+      expect(game).to have_received(:play_turn).exactly(2).times
     end
   end
 
@@ -52,15 +68,88 @@ RSpec.describe Game do
     end
   end
 
-  describe '#parse_position' do
-    it 'converts algebraic notation to board coordinates' do
-      expect(game.parse_position("a8")).to eq([0, 0])
-      expect(game.parse_position("h1")).to eq([7, 7])
-      expect(game.parse_position("e2")).to eq([6, 4])
+  describe '#switch_player' do
+    it 'switches from white to black' do
+      game = Game.new
+      expect { game.send(:switch_player) }.to change { game.current_player.color }.from(:white).to(:black)
     end
   end
 
-  describe '#valid_input_format?' do
+  # User Interaction & Display
+  describe '#display_board' do
+    it 'prints the board to the terminal' do
+      expect { game.display_board }.to output(/8 \| ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜/).to_stdout
+    end
+  end
+
+  describe '#display_welcome_message' do
+    it 'prints a welcome message and instructions to the terminal' do
+      expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.q\., "e2 e4"\)/).to_stdout
+    end
+  end
+
+  # Move Handling & Validation
+  describe '#attempt_move' do
+    let(:game) { Game.new }
+
+    before do
+      allow(game).to receive(:puts)
+    end
+
+    it 'rejects invalid input' do
+      allow(game).to receive(:valid_input_format?).with("e9 e4").and_return(false)
+      expect(game.board).not_to receive(:move_piece)
+
+      game.attempt_move("e9 e4")
+    end
+
+    it 'moves the piece for valid input' do
+      from_position = [6, 4]
+      to_position = [4, 4]
+
+      allow(game).to receive(:valid_input_format?).with("e2 e4").and_return(true)
+      allow(game).to receive(:parse_position).with("e2").and_return(from_position)
+      allow(game).to receive(:parse_position).with("e4").and_return(to_position)
+      expect(game.board).to receive(:move_piece).with(from_position, to_position)
+
+      game.attempt_move("e2 e4")
+    end
+
+    it 'does not allow capturing you own piece' do
+      input = "e2 e1"
+      from_position = [6, 4]
+      to_position = [7, 4]
+
+      own_piece = double("Piece", color: :white)
+      target_piece = double("Piece", color: :white)
+
+      allow(game).to receive(:valid_input_format?).with(input).and_return(true)
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(own_piece)
+      allow(game.board).to receive(:piece_at).with(to_position).and_return(target_piece)
+
+      expect(game.board).not_to receive(:move_piece)
+
+      game.attempt_move(input)
+    end
+
+    it 'replaces an opponent\'s piece with the moving piece when captured' do
+      from_position = [6, 4]
+      to_position = [1, 4]
+      moving_piece = double("Piece", color: :white)
+      opponent_piece = double("Piece", color: :black)
+
+      allow(game.board).to receive(:piece_at).with(from_position).and_return(moving_piece)
+      allow(game.board).to receive(:piece_at).with(to_position).and_return(opponent_piece)
+      allow(moving_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
+      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
+
+      expect(game.board).to receive(:move_piece).with(from_position, to_position)
+      allow(game).to receive(:move_exposes_king?).and_return(false)
+      game.attempt_move("e2 e7")
+    end
+  end
+
+    describe '#valid_input_format?' do
     let(:mock_piece) { double("Piece", color: :white) }
     let(:current_player) { double("Player", color: :white) }
     let(:black_piece) { double("Piece", color: :black)}
@@ -317,83 +406,32 @@ RSpec.describe Game do
     end
   end
 
-  describe '#attempt_move' do
-    let(:game) { Game.new }
-
-    before do
-      allow(game).to receive(:puts)
-    end
-
-    it 'rejects invalid input' do
-      allow(game).to receive(:valid_input_format?).with("e9 e4").and_return(false)
-      expect(game.board).not_to receive(:move_piece)
-
-      game.attempt_move("e9 e4")
-    end
-
-    it 'moves the piece for valid input' do
-      from_position = [6, 4]
-      to_position = [4, 4]
-
-      allow(game).to receive(:valid_input_format?).with("e2 e4").and_return(true)
-      allow(game).to receive(:parse_position).with("e2").and_return(from_position)
-      allow(game).to receive(:parse_position).with("e4").and_return(to_position)
-      expect(game.board).to receive(:move_piece).with(from_position, to_position)
-
-      game.attempt_move("e2 e4")
-    end
-
-    it 'does not allow capturing you own piece' do
-      input = "e2 e1"
-      from_position = [6, 4]
-      to_position = [7, 4]
-
-      own_piece = double("Piece", color: :white)
-      target_piece = double("Piece", color: :white)
-
-      allow(game).to receive(:valid_input_format?).with(input).and_return(true)
-      allow(game.board).to receive(:piece_at).with(from_position).and_return(own_piece)
-      allow(game.board).to receive(:piece_at).with(to_position).and_return(target_piece)
-
-      expect(game.board).not_to receive(:move_piece)
-
-      game.attempt_move(input)
-    end
-
-    it 'replaces an opponent\'s piece with the moving piece when captured' do
-      from_position = [6, 4]
-      to_position = [1, 4]
-      moving_piece = double("Piece", color: :white)
-      opponent_piece = double("Piece", color: :black)
-
-      allow(game.board).to receive(:piece_at).with(from_position).and_return(moving_piece)
-      allow(game.board).to receive(:piece_at).with(to_position).and_return(opponent_piece)
-      allow(moving_piece).to receive(:valid_move?).with(from_position, to_position, game.board).and_return(true)
-      allow(game).to receive(:current_player).and_return(double("Player", color: :white))
-
-      expect(game.board).to receive(:move_piece).with(from_position, to_position)
-      allow(game).to receive(:move_exposes_king?).and_return(false)
-      game.attempt_move("e2 e7")
+  describe '#parse_position' do
+    it 'converts algebraic notation to board coordinates' do
+      expect(game.parse_position("a8")).to eq([0, 0])
+      expect(game.parse_position("h1")).to eq([7, 7])
+      expect(game.parse_position("e2")).to eq([6, 4])
     end
   end
 
-  describe '#play' do
-    it 'calls play_turn repeatedly until the game is over' do
+  #Game State Evaluation
+  describe '#checkmate?' do
+    it 'returns true when the current player is in checkmate' do
       game = Game.new
+      board = game.board
+      board.clear!
 
-      allow(game).to receive(:play_turn)
-      allow(game).to receive(:game_over?).and_return(false, false, true)
+      white_king = King.new(:white, [7, 7])
+      black_rook1 = Rook.new(:black, [7, 6])
+      black_rook2 = Rook.new(:black, [6, 7])
 
-      game.play
+      board.place_piece(white_king, [7, 7])
+      board.place_piece(black_rook1, [6, 6])
+      board.place_piece(black_rook2, [6, 7])
 
-      expect(game).to have_received(:play_turn).exactly(2).times
-    end
-  end
+      allow(game).to receive(:current_player).and_return(game.white_player)
 
-  describe '#switch_player' do
-    it 'switches from white to black' do
-      game = Game.new
-      expect { game.send(:switch_player) }.to change { game.current_player.color }.from(:white).to(:black)
+      expect(game.checkmate?(:white)).to be true
     end
   end
 
@@ -428,54 +466,6 @@ RSpec.describe Game do
     end
   end
 
-  describe '#deep_dup_board' do
-    it 'returns a new board object with duplicated pieces' do
-      original = Board.new
-      original.place_piece(Pawn.new(:white, [1, 0]), [1, 0])
-      game = Game.new_with_board(original)
-
-      duped = game.deep_dup_board(original)
-
-      expect(duped).to be_a(Board)
-      expect(duped).not_to equal(original)
-      expect(duped.piece_at([1, 0])).to be_a(Pawn)
-      expect(duped.piece_at([1, 0])).not_to equal(original.piece_at([1, 0]))
-    end
-  end
-
-  describe '.new_with_board' do
-    it 'creates a game instance with the provided board' do
-      board = Board.new
-      game = Game.new_with_board(board)
-
-      expect(game).to be_a(Game)
-      expect(game.board).to eq(board)
-      expect(game.white_player.color).to eq(:white)
-      expect(game.black_player.color).to eq(:black)
-      expect(game.current_player).to eq(game.white_player)
-    end
-  end
-
-  describe '#checkmate?' do
-    it 'returns true when the current player is in checkmate' do
-      game = Game.new
-      board = game.board
-      board.clear!
-
-      white_king = King.new(:white, [7, 7])
-      black_rook1 = Rook.new(:black, [7, 6])
-      black_rook2 = Rook.new(:black, [6, 7])
-
-      board.place_piece(white_king, [7, 7])
-      board.place_piece(black_rook1, [6, 6])
-      board.place_piece(black_rook2, [6, 7])
-
-      allow(game).to receive(:current_player).and_return(game.white_player)
-
-      expect(game.checkmate?(:white)).to be true
-    end
-  end
-
   describe '#game_over?' do
     it 'returns true when white is in checkmate' do
       game = Game.new
@@ -495,4 +485,21 @@ RSpec.describe Game do
       expect(game.game_over?).to be true
     end
   end
+
+  # Helper Method
+  describe '#deep_dup_board' do
+    it 'returns a new board object with duplicated pieces' do
+      original = Board.new
+      original.place_piece(Pawn.new(:white, [1, 0]), [1, 0])
+      game = Game.new_with_board(original)
+
+      duped = game.deep_dup_board(original)
+
+      expect(duped).to be_a(Board)
+      expect(duped).not_to equal(original)
+      expect(duped.piece_at([1, 0])).to be_a(Pawn)
+      expect(duped.piece_at([1, 0])).not_to equal(original.piece_at([1, 0]))
+    end
+  end
+
 end
