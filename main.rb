@@ -34,6 +34,10 @@ loop do
   when 'load'
     saves = list_saved_games
     if saves.empty?
+      puts "No saved games found."
+    else
+      selected_file = prompt_save_selection(saves)
+      loaded_game = Game.load_game("saves/#{selected_file}")
       puts "\nLoaded: #{selected_file}. Pieces reset to last position...\n\n"
       loaded_game.play
       break
