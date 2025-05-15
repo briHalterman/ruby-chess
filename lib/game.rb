@@ -11,12 +11,6 @@ class Game
     @board = Board.new
     @board.place_starting_pieces
 
-    puts "DEBUG: Top row colors:"
-    puts @board.grid[0].map { |p| p&.color || ' ' }.inspect
-
-    puts "DEBUG: Bottom row colors:"
-    puts @board.grid[7].map { |p| p&.color || ' ' }.inspect
-
     @white_player = Player.new(:white)
     @black_player = Player.new(:black)
     @current_player = @white_player
@@ -67,7 +61,7 @@ class Game
   end
 
   def display_welcome_message
-    puts "Let the game begin! White to move. Type 'exit' to leave, or make your move... (e.q., \"e2 e4\")"
+    puts "Let the game begin! White to move. Type 'exit' to leave, or make your move... (e.g., \"e2 e4\")"
   end
 
   # Move Handling & Validation
@@ -87,7 +81,7 @@ class Game
     end
 
     if move_exposes_king?(from_position, to_position)
-      puts "You can't move into check"
+      puts "You can't move into check."
       return false
     end
 
@@ -104,29 +98,24 @@ class Game
     from_position = parse_position(from)
     piece = board.piece_at(from_position)
 
-    # return false if piece.nil?
-    # return false unless piece.color == current_player.color
-
     if piece.nil?
-      puts "Debug: No piece at #{from_position}"
+      puts "No piece at #{from_position}. Please try again."
       return false
     end
 
     if piece.color != current_player.color
-      puts "Debug: Wrong color piece: #{piece.color}, player color: #{current_player.color}"
+      puts "Wrong color piece, #{piece.color}, for player color, #{current_player.color}. Please try again."
       return false
     end
 
     to_position = parse_position(_to)
-    # return false unless piece.valid_move?(from_position, to_position, board)
     unless piece.valid_move?(from_position, to_position, board)
-      puts "Debug: Invalid move for #{piece.class} from #{from_position} to #{to_position}"
+      puts "Invalid move for #{piece.class} from #{from_position} to #{to_position}"
       return false
     end
 
-    # return false if move_exposes_king?(from_position, to_position)
     if move_exposes_king?(from_position, to_position)
-      puts "Debug: Move exposes king"
+      puts "Move exposes king. Please try again."
       return false
     end
 

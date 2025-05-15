@@ -120,7 +120,7 @@ RSpec.describe Game do
 
   describe '#display_welcome_message' do
     it 'prints a welcome message and instructions to the terminal' do
-      expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.q\., "e2 e4"\)/).to_stdout
+      expect { game.display_welcome_message }.to output(/Let the game begin! White to move. Type 'exit' to leave, or make your move... \(e\.g\., "e2 e4"\)/).to_stdout
     end
   end
 
