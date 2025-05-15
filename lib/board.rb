@@ -29,15 +29,16 @@ class Board
 
   def move_piece(current_position, new_position)
     piece = piece_at(current_position)
+    piece.position = new_position if piece
     place_piece(piece, new_position)
     place_piece(nil, current_position)
   end
 
   def place_starting_pieces
-    place_pawns(:white, 1)
-    place_major_pieces(:white, 0)
-    place_pawns(:black, 6)
-    place_major_pieces(:black, 7)
+    place_major_pieces(:black, 0)
+    place_pawns(:black, 1)
+    place_pawns(:white, 6)
+    place_major_pieces(:white, 7)
   end
 
   def place_pawns(color, row)
@@ -64,9 +65,9 @@ class Board
   end
 
   def display_board
-    rows = @grid.map.with_index.reverse_each.map do |row, index|
+    rows = @grid.each_with_index.map do |row, i|
       pieces = row.map { |cell| cell&.symbol || ' ' }
-      "#{index + 1} | #{pieces.join(' ')}"
+      "#{8 - i} | #{pieces.join(' ')}"
     end
     rows << "    a b c d e f g h"
     rows.join("\n")

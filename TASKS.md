@@ -68,8 +68,12 @@
 ## Stage 7: Final Touches
 - [x] main.rb
 - [ ] Manual playtesting
-- [ ] Improve welcome message
-- [ ] Error messages for input validation
-- [ ] Improve board rendering
+  - [x] Welcome message prints correctly and waits for input
+  - [x] Board gives error and prompts again on invalid start-up input
+  - [x] Board updates and switches players
+  - [ ] Saves and exit
+  - [ ] Resumes with correct board and turn
+  - [ ] Board gives error and prompts again on invalid load input
+  - [ ] Exits
 - [ ] Polish README and usage instructions
 - [ ] Rubocop

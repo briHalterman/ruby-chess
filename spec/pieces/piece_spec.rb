@@ -7,7 +7,10 @@ RSpec.describe Piece do
 
   describe '#symbol' do
     it 'raises NotImplementedError by default' do
-      expect { piece.symbol }.to raise_error(NotImplementedError, /must define a `symbol` method/)
+      # expect { piece.symbol }.to raise_error(NotImplementedError, /must define a `symbol` method/) <- OBSOLETE
+
+      piece = Rook.new(:white, [0, 0])
+      expect(piece.symbol).to eq('♖')
     end
   end
 end

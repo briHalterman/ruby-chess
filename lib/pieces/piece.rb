@@ -9,6 +9,7 @@ class Piece
   end
 
   def symbol
-    raise NotImplementedError, 'Each subclass must define a `symbol` method.'
+    key = "#{color}_#{self.class.name.downcase}".to_sym
+    Board::UNICODE_PIECES[key]
   end
 end
