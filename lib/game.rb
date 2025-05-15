@@ -92,8 +92,15 @@ class Game
 
   def valid_input_format?(input)
     cells = input.split(" ")
-    return false unless cells.length == 2
-    return false unless input =~ /\A[a-h][1-8] [a-h][1-8]\z/
+    unless cells.length == 2
+      puts "Invalid input format. Use format like 'e2 e4'."
+      return false
+    end
+
+    unless input =~ /\A[a-h][1-8] [a-h][1-8]\z/
+      puts "Invalid input format. Use format like 'e2 e4'."
+      return false
+    end
 
     from, _to = cells
     from_position = parse_position(from)
