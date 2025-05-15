@@ -39,6 +39,7 @@ class Game
 
     case move
     when 'exit'
+      puts "Thanks for playing Ruby Chess. Goodbye!"
       exit
     when 'save'
       timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
